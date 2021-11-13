@@ -24,7 +24,7 @@ class RestaurantListView(mixins.ListModelMixin, GenericViewSet):
                 "orders", filter=Q(orders__status__in=[OrderStatus.DELIVERED])
             )
         )
-        .filter(is_active=True)
+        .actives()
         .order_by("-order_count", "-created_date")
     )
     serializer_class = RestaurantListSerializer

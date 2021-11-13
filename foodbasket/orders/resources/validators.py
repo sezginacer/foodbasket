@@ -17,4 +17,4 @@ class OrderStatusUpdateValidator(object):
         )
 
         if not (valid_change or cancelled):
-            raise ValidationError(_("Status is not valid."))
+            raise ValidationError(_("This is not a valid status change."))

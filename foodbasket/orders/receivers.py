@@ -1,4 +1,5 @@
 from django.conf import settings
+from django.db import transaction
 from django.utils.module_loading import import_string
 
 
@@ -17,3 +18,4 @@ def add_order_to_queue(instance, created=False, **kwargs):
     pubsub = _get_pubsub()
     serializer = OrderSerializer(instance)
     pubsub.publish(settings.ORDER_QUEUE, serializer.data)
+    transaction.on_commit(lambda: pubsub.publish(settings.ORDER_QUEUE, serializer.data))

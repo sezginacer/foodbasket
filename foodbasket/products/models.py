@@ -3,6 +3,7 @@ import uuid
 from django.core.validators import MinValueValidator
 from django.db import models
 
+from foodbasket.products.managers import ProductQuerySet
 from foodbasket.restaurants.models import Restaurant
 from foodbasket.utils.model import BaseModel
 
@@ -27,6 +28,8 @@ class Product(BaseModel):
         max_digits=10, decimal_places=2, validators=[MinValueValidator(0.01)]
     )
     is_active = models.BooleanField(default=True)
+
+    objects = ProductQuerySet.as_manager()
 
     def __str__(self):
         return f"{self.name}"

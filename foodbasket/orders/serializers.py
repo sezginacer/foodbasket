@@ -10,9 +10,7 @@ from foodbasket.utils.orders import generate_order_number
 
 
 class OrderItemCompleteSerializer(serializers.Serializer):  # noqa
-    product = serializers.PrimaryKeyRelatedField(
-        queryset=Product.objects.filter(is_active=True)
-    )
+    product = serializers.PrimaryKeyRelatedField(queryset=Product.objects.actives())
     quantity = serializers.IntegerField(default=1, validators=[MinValueValidator(1)])
 
 

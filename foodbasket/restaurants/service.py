@@ -16,7 +16,8 @@ class RestaurantService(object):
                     filter=Q(order_items__order__status__in=[OrderStatus.DELIVERED]),
                 )
             )
-            .filter(restaurant=restaurant, is_active=True, total_quantity_sold__gt=0)
+            .actives()
+            .filter(restaurant=restaurant, total_quantity_sold__gt=0)
             .order_by("-total_quantity_sold", "-created_date")[:limit]
         )
         return popular_products
@@ -41,7 +42,8 @@ class RestaurantService(object):
                             ),
                         )
                     )
-                    .filter(restaurant=restaurant, is_active=True)
+                    .actives()
+                    .filter(restaurant=restaurant)
                     .order_by("-total_quantity_sold"),
                 )
             )
