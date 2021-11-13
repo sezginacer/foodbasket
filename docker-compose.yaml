@@ -1,0 +1,39 @@
+version: '3.8'
+
+services:
+  web:
+    build: ./
+    command: >
+      sh -c "python manage.py migrate --noinput &&
+             python manage.py makemessages --all --ignore=venv &&
+             python manage.py compilemessages --ignore=venv &&
+             gunicorn foodbasket.wsgi:application --workers=4 --bind=0.0.0.0:8080"
+    volumes:
+      - .:/code
+    ports:
+      - "8080:8080"
+    environment:
+      - DATABASE_URL=postgres://postgres:postgres@db:5432/foodbasket
+      - DEBUG=0
+      - PUBSUB_CLASS=pubsub.redis.RedisPubSub
+      - PUBSUB_OPTIONS=host=redis,port=6379,db=1
+    depends_on:
+      - db
+      - redis
+  db:
+    image: postgres:12.0-alpine
+    volumes:
+      - postgres_data:/var/lib/postgresql/data/
+    environment:
+      - POSTGRES_DB=foodbasket
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+    ports:
+      - "5432:5432"
+  redis:
+    image: redis:alpine
+    ports:
+      - "6379:6379"
+
+volumes:
+  postgres_data:

@@ -58,7 +58,7 @@ class OrderViewSet(
 
 
 class StatusView(APIView):
-    permission_classes = (permissions.AllowAny,)  #  (permissions.IsAdminUser,)
+    permission_classes = (permissions.IsAdminUser,)
     serializer_class = StatusSerializer
 
     def get(self, request, *args, **kwargs):  # noqa

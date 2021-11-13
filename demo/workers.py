@@ -1,3 +1,4 @@
+import os
 import random
 import sys
 import time
@@ -13,7 +14,8 @@ COOKING = "cooking"
 CARRIER = "carry"
 CASHIER = "cashier"
 
-ps = RedisPubSub()
+pubsub_options = os.environ.get("PUBSUB_OPTIONS", "host=localhost,port=6379,db=1")
+ps = RedisPubSub(**dict([v.split("=") for v in pubsub_options.split(",")]))
 
 service = FoodBasketDemoAdminService(email="admin@admin.com", password="12345")
 

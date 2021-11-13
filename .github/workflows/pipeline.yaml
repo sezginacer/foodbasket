@@ -46,7 +46,7 @@ jobs:
           PUBSUB_CLASS: pubsub.dummy.DummyPubSub
           PUBSUB_OPTIONS: no=options
         run: |
-          python manage.py migrate
+          python manage.py migrate --noinput
           python manage.py makemessages --all
           python manage.py compilemessages
           python manage.py test --verbosity 2 --failfast
