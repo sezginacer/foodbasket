@@ -34,11 +34,12 @@ jobs:
           python -m pip install --upgrade pip
           pip install -r requirements.txt
           pip install -r requirements-pipeline.txt
+          sudo apt install gettext
       - name: Linting with black & isort
         run: |
           black --check --quiet --exclude=migrations/ ./
           isort -c --profile=black --skip=migrations ./
-      - name: Do migrate, makemessages & compilemessages
+      - name: Run Tests
         env:
           DATABASE_URL: postgres://postgres:postgres@127.0.0.1:5432/foodbasket
           DEBUG: 0
@@ -48,6 +49,4 @@ jobs:
           python manage.py migrate
           python manage.py makemessages --all
           python manage.py compilemessages
-      - name: Run Tests
-        run: |
           python manage.py test --verbosity 2 --failfast
