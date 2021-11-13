@@ -1,8 +1,6 @@
 from django.db.models import Count, Prefetch
 from django.utils import timezone
 from rest_framework import mixins, permissions
-from rest_framework import status as http_status
-from rest_framework.decorators import action
 from rest_framework.response import Response
 from rest_framework.views import APIView
 from rest_framework.viewsets import GenericViewSet
@@ -11,24 +9,23 @@ from foodbasket.orders.enums import OrderStatus
 from foodbasket.orders.models import Order, OrderItem
 from foodbasket.orders.resources.serializers import (
     OrderSerializer,
-    OrderStatusUpdateSerializer,
+    OrderUpdateSerializer,
     StatusSerializer,
 )
-from foodbasket.orders.service import OrderService
 from foodbasket.utils.mixins import MultiSerializerViewSetMixin
 
 
 class OrderViewSet(
     MultiSerializerViewSetMixin,
     mixins.RetrieveModelMixin,
+    mixins.UpdateModelMixin,
     mixins.ListModelMixin,
     GenericViewSet,
 ):
+    http_method_names = ["get", "patch"]
     permission_classes = (permissions.IsAdminUser,)
     serializer_class = OrderSerializer
-    serializer_classes = {
-        "update_status": OrderStatusUpdateSerializer,
-    }
+    serializer_classes = {"update": OrderUpdateSerializer}
     queryset = (
         Order.objects.all()
         .order_by("-created_date")
@@ -44,17 +41,6 @@ class OrderViewSet(
     )
     lookup_field = "number"
     lookup_url_kwarg = "number"
-
-    service = OrderService()
-
-    @action(methods=["PATCH"], detail=True, url_path="update-status")
-    def update_status(self, request, *args, **kwargs):
-        order = self.get_object()
-        serializer = self.get_serializer(order, data=request.data)
-        serializer.is_valid(raise_exception=True)
-
-        self.service.update_status(order, **serializer.validated_data)
-        return Response(status=http_status.HTTP_204_NO_CONTENT)
 
 
 class StatusView(APIView):

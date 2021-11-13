@@ -29,9 +29,3 @@ class OrderService(object):
         if commit:
             order_item.save()
         return order_item
-
-    @transaction.atomic()
-    def update_status(self, order, status):
-        order.status = status
-        order.save(update_fields=["status", "modified_date"])
-        return order

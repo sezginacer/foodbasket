@@ -27,7 +27,7 @@ class FoodBasketDemoService(object):
 
 class FoodBasketDemoAdminService(FoodBasketDemoService):
     def update_order(self, order_number, **update):
-        url = f"{self.base_url}/api/v1/orders/{order_number}/update-status/"
+        url = f"{self.base_url}/api/v1/orders/{order_number}/"
         response = requests.patch(url, json=update, headers=self._get_auth_headers())
         return response.ok
 

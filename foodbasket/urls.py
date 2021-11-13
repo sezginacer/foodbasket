@@ -14,13 +14,13 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.urls import include, path
-from rest_framework.routers import DefaultRouter
+from rest_framework.routers import SimpleRouter
 
 from foodbasket.orders.resources.views import OrderViewSet, StatusView
 from foodbasket.products.resources.views import CategoryViewSet, ProductViewSet
 from foodbasket.restaurants.resources.views import RestaurantViewSet
 
-router = DefaultRouter()
+router = SimpleRouter()
 router.register("orders", OrderViewSet)
 router.register("products", ProductViewSet)
 router.register("categories", CategoryViewSet)
