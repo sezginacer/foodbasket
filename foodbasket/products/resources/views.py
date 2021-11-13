@@ -1,7 +1,7 @@
 from rest_framework import permissions
 from rest_framework.viewsets import ModelViewSet
 
-from foodbasket.products.models import Product, Category
+from foodbasket.products.models import Category, Product
 from foodbasket.products.resources.serializers import (
     CategorySerializer,
     ProductSerializer,

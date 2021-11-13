@@ -1,7 +1,7 @@
 from django.contrib.auth.hashers import make_password
 from django.db import transaction
 
-from foodbasket.products.models import Product, Category
+from foodbasket.products.models import Category, Product
 from foodbasket.restaurants.models import Restaurant
 from foodbasket.users.models import User
 

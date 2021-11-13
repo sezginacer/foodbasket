@@ -1,6 +1,6 @@
 from django.db import transaction
 
-from foodbasket.orders.models import OrderItem, Order
+from foodbasket.orders.models import Order, OrderItem
 
 
 class OrderService(object):

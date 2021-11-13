@@ -1,6 +1,6 @@
 from django.urls import path
 
-from foodbasket.users.views import TokenView, RegisterView
+from foodbasket.users.views import RegisterView, TokenView
 
 urlpatterns = [
     path("token/", TokenView.as_view(), name="token"),

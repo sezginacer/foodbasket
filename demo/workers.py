@@ -5,9 +5,8 @@ import time
 sys.path.append("..")  # in order to import from demo, pubsub & foodbasket modules.
 
 from demo.service import FoodBasketDemoAdminService  # noqa
-from pubsub.redis import RedisPubSub  # noqa
 from foodbasket.orders.enums import OrderStatus  # noqa
-
+from pubsub.redis import RedisPubSub  # noqa
 
 BOARD = "orders"
 COOKING = "cooking"

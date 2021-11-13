@@ -1,12 +1,12 @@
 from django.conf import settings
-from django.db.models import Prefetch, Count, Q, Sum, OuterRef, Exists
+from django.db.models import Count, Exists, OuterRef, Prefetch, Q, Sum
 from rest_framework import mixins, permissions
 from rest_framework.response import Response
 from rest_framework.viewsets import GenericViewSet
 
 from foodbasket.orders.enums import OrderStatus
 from foodbasket.orders.models import Order
-from foodbasket.products.models import Product, Category
+from foodbasket.products.models import Category, Product
 from foodbasket.restaurants.models import Restaurant
 from foodbasket.restaurants.serializers import (
     RestaurantDetailSerializer,

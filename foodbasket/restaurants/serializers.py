@@ -1,6 +1,6 @@
 from rest_framework import serializers
 
-from foodbasket.products.models import Product, Category
+from foodbasket.products.models import Category, Product
 from foodbasket.restaurants.models import Restaurant
 
 

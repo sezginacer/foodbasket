@@ -1,8 +1,8 @@
 from django.conf import settings
-from django.db.models import Sum, Q, Count, Prefetch
+from django.db.models import Count, Prefetch, Q, Sum
 
 from foodbasket.orders.enums import OrderStatus
-from foodbasket.products.models import Product, Category
+from foodbasket.products.models import Category, Product
 
 
 class RestaurantService(object):

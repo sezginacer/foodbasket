@@ -1,6 +1,6 @@
 from django.urls import path
 
-from foodbasket.restaurants.views import RestaurantListView, RestaurantDetailView
+from foodbasket.restaurants.views import RestaurantDetailView, RestaurantListView
 
 urlpatterns = [
     path("", RestaurantListView.as_view({"get": "list"}), name="restaurant-list"),
