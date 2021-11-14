@@ -9,9 +9,9 @@ from demo.service import FoodBasketDemoAdminService  # noqa
 from foodbasket.orders.enums import OrderStatus  # noqa
 from pubsub.redis import RedisPubSub  # noqa
 
-BOARD = "orders"
+BOARD = os.environ.get("ORDER_PUBSUB_CHANNEL", "orders")
 COOKING = "cooking"
-CARRIER = "carry"
+CARRIER = "carrier"
 CASHIER = "cashier"
 
 pubsub_options = os.environ.get("PUBSUB_OPTIONS", "host=localhost,port=6379,db=1")

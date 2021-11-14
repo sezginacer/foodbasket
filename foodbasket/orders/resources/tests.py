@@ -87,6 +87,6 @@ class StatusViewTestCase(TestCase):
         self.assertEqual(response.status_code, http_status.HTTP_200_OK)
 
         response_results = {s["status"]: s["orders"] for s in response.json()}
-        for status in list(OrderStatus):
+        for status in OrderStatus:
             count = Order.objects.filter(status=status).count()
             self.assertEqual(count, response_results.get(status.label))

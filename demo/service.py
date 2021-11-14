@@ -67,7 +67,7 @@ class FoodBasketDemoCustomerService(FoodBasketDemoService):
             url, json={"items": items}, headers=self._get_auth_headers()
         )
         response.raise_for_status()
-        print(f"Order ({response.json()['number']}) completed.")
+        print(f"Order ({response.json()['number']}) created.")
 
     def _empty_products(self):
         self._products = None

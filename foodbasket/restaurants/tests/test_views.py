@@ -71,7 +71,7 @@ class RestaurantDetailViewTestCase(TestCase):
                 for product in products_
             ]
             self.order_service.create_order(
-                items, user, number, status=random.choice(list(OrderStatus))
+                items, user, number, status=random.choice(OrderStatus.values)
             )
 
     @override_settings(RESTAURANT_DETAIL_POPULAR_PRODUCTS_LIMIT=3)

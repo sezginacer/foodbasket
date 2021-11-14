@@ -47,7 +47,7 @@ class OrderFactory(DjangoModelFactory):
     user = SubFactory(UserFactory)
     number = fuzzy.FuzzyText(length=12, chars="0123456789")
     amount = fuzzy.FuzzyDecimal(100)
-    status = fuzzy.FuzzyChoice(choices=list(map(int, OrderStatus)))
+    status = fuzzy.FuzzyChoice(choices=OrderStatus.values)
 
     class Meta:
         model = Order

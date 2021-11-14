@@ -126,11 +126,13 @@ def check(model):
 @check(Category)
 def create_categories():
     Category.objects.bulk_create([Category(**c) for c in categories])
+    print("categories.. done")
 
 
 @check(Restaurant)
 def create_restaurants():
     Restaurant.objects.bulk_create([Restaurant(**r) for r in restaurants])
+    print("restaurants.. done")
 
 
 @check(Product)
@@ -143,6 +145,7 @@ def create_products():
             Product(category_id=category.pk, restaurant_id=restaurant.pk, **p)
         )
     Product.objects.bulk_create(products_)
+    print("products.. done")
 
 
 @check(User)
@@ -157,6 +160,7 @@ def create_users():
         tokens.append(Token(user=user, key=auth_token))
     User.objects.bulk_create(users_)
     Token.objects.bulk_create(tokens)
+    print("users.. done")
 
 
 def run():
