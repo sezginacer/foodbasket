@@ -23,4 +23,4 @@ class Restaurant(BaseModel):
         return f"{self.name}"
 
     def get_absolute_url(self):
-        return reverse("restaurant-detail", kwargs={"uuid": self.uuid})
+        return reverse("detail-restaurant", kwargs={"uuid": self.uuid})

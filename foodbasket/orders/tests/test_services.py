@@ -1,9 +1,9 @@
 from unittest.mock import patch
 
 from django.test import TestCase
-from django.utils.crypto import get_random_string
 
 from foodbasket.common.factory import ProductFactory, UserFactory
+from foodbasket.common.orders import generate_order_number
 from foodbasket.orders.enums import OrderStatus
 from foodbasket.orders.models import Order
 from foodbasket.orders.service import OrderService
@@ -16,7 +16,7 @@ class OrderServiceTestCase(TestCase):
     @patch("foodbasket.orders.receivers.get_pubsub")
     def test_create_order(self, m):
         user = UserFactory()
-        number = get_random_string(length=12, allowed_chars="0123456789")
+        number = generate_order_number()
         product_1, product_2 = ProductFactory(), ProductFactory()
         status = OrderStatus.WAITING_APPROVE
         data = {

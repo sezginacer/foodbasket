@@ -8,11 +8,10 @@ from foodbasket.orders.enums import OrderStatus
 
 
 class OrderCompleteViewTestTest(TestCase):
-    url = reverse_lazy("order-complete")
-
     def setUp(self):
         self.user = UserFactory(is_active=True)
         self.inactive_user = UserFactory(is_active=False)
+        self.order_complete_url = reverse_lazy("order-complete")
 
     def generate_successful_order_data(self):  # noqa
         restaurant = RestaurantFactory()
@@ -33,7 +32,7 @@ class OrderCompleteViewTestTest(TestCase):
     def send_complete_order_request(self, data, user=None):
         user = user or self.user
         response = self.client.post(
-            self.url,
+            self.order_complete_url,
             data=data,
             content_type="application/json",
             **self.get_auth_headers(user),

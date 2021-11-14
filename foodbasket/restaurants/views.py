@@ -1,7 +1,6 @@
 from django.db.models import Count, Q
-from rest_framework import generics, mixins, permissions
+from rest_framework import generics, permissions
 from rest_framework.response import Response
-from rest_framework.viewsets import GenericViewSet
 
 from foodbasket.orders.enums import OrderStatus
 from foodbasket.restaurants.models import Restaurant
