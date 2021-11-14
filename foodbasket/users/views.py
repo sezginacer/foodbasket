@@ -13,19 +13,23 @@ from foodbasket.users.service import AccountService
 class TokenView(APIView):
     permission_classes = (permissions.AllowAny,)
     serializer_class = LoginSerializer
+    throttle_scope = "token"
+
     service = AccountService()
 
     def post(self, request, *args, **kwargs):
         serializer = self.serializer_class(data=request.data)
         serializer.is_valid(raise_exception=True)
         _, token = self.service.authenticate(request, **serializer.validated_data)
-        return Response(data={"auth_token": token.key})
+        return Response({"auth_token": token.key})
 
 
 class RegisterView(APIView):
     permission_classes = (permissions.AllowAny,)
     register_serializer = RegisterSerializer
     response_serializer = UserSerializer
+    throttle_scope = "register"
+
     service = AccountService()
 
     def post(self, request, *args, **kwargs):

@@ -15,8 +15,8 @@ def _groupby(iterable, key):
     for item in iterable:
         grouped[key(item)].append(item)
 
-    for key, group in grouped.items():
-        yield key, group
+    for key_, group in grouped.items():
+        yield key_, group
 
 
 def _handle_protected_error(exc):
@@ -39,6 +39,6 @@ def exception_handler(exc, context):
     response = drf_exception_handler(exc, context)
 
     if response is None and isinstance(exc, ProtectedError):
-        return _handle_protected_error(exc)
+        response = _handle_protected_error(exc)
 
     return response
