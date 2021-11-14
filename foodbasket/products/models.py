@@ -2,6 +2,7 @@ import uuid
 
 from django.core.validators import MinValueValidator
 from django.db import models
+from django.utils.translation import gettext_lazy as _
 
 from foodbasket.products.managers import ProductQuerySet
 from foodbasket.restaurants.models import Restaurant
@@ -11,6 +12,10 @@ from foodbasket.utils.model import BaseModel
 class Category(BaseModel):
     uuid = models.UUIDField(default=uuid.uuid4, editable=False, unique=True)
     name = models.CharField(max_length=64)
+
+    class Meta:
+        verbose_name = _("category")
+        verbose_name_plural = _("categories")
 
     def __str__(self):
         return f"{self.name}"
@@ -30,6 +35,11 @@ class Product(BaseModel):
     is_active = models.BooleanField(default=True)
 
     objects = ProductQuerySet.as_manager()
+
+    class Meta:
+        verbose_name = _("product")
+        verbose_name_plural = _("products")
+        unique_together = ("name", "restaurant")
 
     def __str__(self):
         return f"{self.name}"

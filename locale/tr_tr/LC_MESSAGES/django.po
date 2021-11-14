@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-11-13 14:56+0000\n"
+"POT-Creation-Date: 2021-11-14 09:19+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -41,6 +41,22 @@ msgstr "Teslim Edildi"
 msgid "Cancelled"
 msgstr "İptal Edildi"
 
+#: foodbasket/orders/models.py:28
+msgid "order"
+msgstr "sipariş"
+
+#: foodbasket/orders/models.py:29
+msgid "orders"
+msgstr "siparişler"
+
+#: foodbasket/orders/models.py:48
+msgid "order item"
+msgstr "sipariş öğesi"
+
+#: foodbasket/orders/models.py:49
+msgid "order items"
+msgstr "sipariş öğeleri"
+
 #: foodbasket/orders/resources/validators.py:20
 msgid "This is not a valid status change."
 msgstr "Bu geçerli bir statü değişimi değildir."
@@ -53,6 +69,34 @@ msgstr "Bütün ürünler aynı restorandan olmalı."
 msgid "All items must be of different products."
 msgstr "Bütün sepet öğeleri farklı ürünlerden olmalı."
 
+#: foodbasket/products/models.py:17
+msgid "category"
+msgstr "kategori"
+
+#: foodbasket/products/models.py:18
+msgid "categories"
+msgstr "kategoriler"
+
+#: foodbasket/products/models.py:40
+msgid "product"
+msgstr "ürün"
+
+#: foodbasket/products/models.py:41
+msgid "products"
+msgstr "ürünler"
+
+#: foodbasket/restaurants/models.py:19
+msgid "restaurant"
+msgstr "restoran"
+
+#: foodbasket/restaurants/models.py:20
+msgid "restaurants"
+msgstr "restoranlar"
+
 #: foodbasket/users/models.py:10
 msgid "email address"
 msgstr "e-posta adresi"
+
+#: foodbasket/utils/rest.py:32
+msgid "There are some references to it: {detail}."
+msgstr "Bu objeye referanslar var: {detail}."

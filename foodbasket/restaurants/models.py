@@ -2,6 +2,7 @@ import uuid
 
 from django.db import models
 from django.urls import reverse
+from django.utils.translation import gettext_lazy as _
 
 from foodbasket.restaurants.managers import RestaurantQuerySet
 from foodbasket.utils.model import BaseModel
@@ -13,6 +14,10 @@ class Restaurant(BaseModel):
     is_active = models.BooleanField(default=True)
 
     objects = RestaurantQuerySet.as_manager()
+
+    class Meta:
+        verbose_name = _("restaurant")
+        verbose_name_plural = _("restaurants")
 
     def __str__(self):
         return f"{self.name}"

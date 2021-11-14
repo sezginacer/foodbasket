@@ -2,6 +2,7 @@ from django.conf import settings
 from django.core.validators import MinValueValidator
 from django.db import models
 from django.db.models.signals import post_save
+from django.utils.translation import gettext_lazy as _
 
 from foodbasket.orders.enums import OrderStatus
 from foodbasket.orders.receivers import add_order_to_queue
@@ -23,6 +24,10 @@ class Order(BaseModel):
         Restaurant, related_name="orders", on_delete=models.PROTECT
     )
 
+    class Meta:
+        verbose_name = _("order")
+        verbose_name_plural = _("orders")
+
     def __str__(self):
         return f"{self.number}"
 
@@ -40,6 +45,8 @@ class OrderItem(BaseModel):
     )
 
     class Meta:
+        verbose_name = _("order item")
+        verbose_name_plural = _("order items")
         unique_together = ("product", "order")
 
     def __str__(self):

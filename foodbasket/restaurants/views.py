@@ -1,12 +1,9 @@
-from django.conf import settings
-from django.db.models import Count, Exists, OuterRef, Prefetch, Q, Sum
-from rest_framework import mixins, permissions
+from django.db.models import Count, Q
+from rest_framework import generics, mixins, permissions
 from rest_framework.response import Response
 from rest_framework.viewsets import GenericViewSet
 
 from foodbasket.orders.enums import OrderStatus
-from foodbasket.orders.models import Order
-from foodbasket.products.models import Category, Product
 from foodbasket.restaurants.models import Restaurant
 from foodbasket.restaurants.serializers import (
     RestaurantDetailSerializer,
@@ -15,7 +12,7 @@ from foodbasket.restaurants.serializers import (
 from foodbasket.restaurants.service import RestaurantService
 
 
-class RestaurantListView(mixins.ListModelMixin, GenericViewSet):
+class RestaurantListView(generics.ListAPIView):
     permission_classes = (permissions.AllowAny,)
     queryset = (
         Restaurant.objects.all()
@@ -30,7 +27,7 @@ class RestaurantListView(mixins.ListModelMixin, GenericViewSet):
     serializer_class = RestaurantListSerializer
 
 
-class RestaurantDetailView(mixins.RetrieveModelMixin, GenericViewSet):
+class RestaurantDetailView(generics.RetrieveAPIView):
     permission_classes = (permissions.AllowAny,)
     queryset = Restaurant.objects.all()
     serializer_class = RestaurantDetailSerializer

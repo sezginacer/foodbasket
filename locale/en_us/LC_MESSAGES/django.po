@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-11-13 14:56+0000\n"
+"POT-Creation-Date: 2021-11-14 09:19+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -41,6 +41,22 @@ msgstr ""
 msgid "Cancelled"
 msgstr ""
 
+#: foodbasket/orders/models.py:28
+msgid "order"
+msgstr ""
+
+#: foodbasket/orders/models.py:29
+msgid "orders"
+msgstr ""
+
+#: foodbasket/orders/models.py:48
+msgid "order item"
+msgstr ""
+
+#: foodbasket/orders/models.py:49
+msgid "order items"
+msgstr ""
+
 #: foodbasket/orders/resources/validators.py:20
 msgid "This is not a valid status change."
 msgstr ""
@@ -53,6 +69,35 @@ msgstr ""
 msgid "All items must be of different products."
 msgstr ""
 
+#: foodbasket/products/models.py:17
+msgid "category"
+msgstr ""
+
+#: foodbasket/products/models.py:18
+msgid "categories"
+msgstr ""
+
+#: foodbasket/products/models.py:40
+msgid "product"
+msgstr ""
+
+#: foodbasket/products/models.py:41
+msgid "products"
+msgstr ""
+
+#: foodbasket/restaurants/models.py:19
+msgid "restaurant"
+msgstr ""
+
+#: foodbasket/restaurants/models.py:20
+msgid "restaurants"
+msgstr ""
+
 #: foodbasket/users/models.py:10
 msgid "email address"
+msgstr ""
+
+#: foodbasket/utils/rest.py:32
+#, python-brace-format
+msgid "There are some references to it: {detail}."
 msgstr ""

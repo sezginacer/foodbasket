@@ -13,3 +13,4 @@ class ProductSerializer(serializers.ModelSerializer):
     class Meta:
         model = Product
         exclude = ()
+        extra_kwargs = {"restaurant": {"read_only": True}}
