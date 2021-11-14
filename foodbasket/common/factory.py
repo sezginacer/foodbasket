@@ -2,7 +2,7 @@ from factory import LazyAttribute, SubFactory, fuzzy
 from factory.django import DjangoModelFactory
 
 from foodbasket.orders.enums import OrderStatus
-from foodbasket.orders.models import Order
+from foodbasket.orders.models import Order, OrderItem
 from foodbasket.products.models import Category, Product
 from foodbasket.restaurants.models import Restaurant
 from foodbasket.users.models import User
@@ -25,17 +25,6 @@ class RestaurantFactory(DjangoModelFactory):
         model = Restaurant
 
 
-class OrderFactory(DjangoModelFactory):
-    restaurant = SubFactory(RestaurantFactory)
-    user = SubFactory(UserFactory)
-    number = fuzzy.FuzzyText(length=12, chars="0123456789")
-    amount = fuzzy.FuzzyDecimal(100)
-    status = fuzzy.FuzzyChoice(choices=list(map(int, OrderStatus)))
-
-    class Meta:
-        model = Order
-
-
 class CategoryFactory(DjangoModelFactory):
     name = fuzzy.FuzzyText(length=25)
 
@@ -51,3 +40,24 @@ class ProductFactory(DjangoModelFactory):
 
     class Meta:
         model = Product
+
+
+class OrderFactory(DjangoModelFactory):
+    restaurant = SubFactory(RestaurantFactory)
+    user = SubFactory(UserFactory)
+    number = fuzzy.FuzzyText(length=12, chars="0123456789")
+    amount = fuzzy.FuzzyDecimal(100)
+    status = fuzzy.FuzzyChoice(choices=list(map(int, OrderStatus)))
+
+    class Meta:
+        model = Order
+
+
+class OrderItemFactory(DjangoModelFactory):
+    quantity = fuzzy.FuzzyChoice(choices=[1, 3, 5])
+    amount = fuzzy.FuzzyDecimal(20)
+    order = SubFactory(OrderFactory)
+    product = SubFactory(ProductFactory)
+
+    class Meta:
+        model = OrderItem
