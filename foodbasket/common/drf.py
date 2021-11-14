@@ -19,21 +19,26 @@ def _groupby(iterable, key):
         yield key, group
 
 
+def _handle_protected_error(exc):
+    groups = []
+    for model, objects in _groupby(exc.protected_objects, key=type):
+        model_label = model._meta.verbose_name_plural  # noqa
+        object_labels = ", ".join(map(str, objects))
+        groups.append(f"{model_label} ({object_labels})")
+
+    data = {
+        "detail": _("There are some references to the object: {detail}.").format(
+            detail=", ".join(groups)
+        )
+    }
+    set_rollback()
+    return Response(data, status=status.HTTP_400_BAD_REQUEST)
+
+
 def exception_handler(exc, context):
     response = drf_exception_handler(exc, context)
 
     if response is None and isinstance(exc, ProtectedError):
-        groups = []
-        for model, objects in _groupby(exc.protected_objects, key=type):
-            model_label = model._meta.verbose_name_plural  # noqa
-            object_labels = ", ".join(map(str, objects))
-            groups.append(f"{model_label} ({object_labels})")
-        data = {
-            "detail": _("There are some references to it: {detail}.").format(
-                detail=", ".join(groups)
-            )
-        }
-        set_rollback()
-        return Response(data, status=status.HTTP_400_BAD_REQUEST)
+        return _handle_protected_error(exc)
 
     return response

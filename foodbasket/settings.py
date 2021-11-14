@@ -158,7 +158,7 @@ REST_FRAMEWORK = {
     ],
     "DEFAULT_PAGINATION_CLASS": "rest_framework.pagination.LimitOffsetPagination",
     "PAGE_SIZE": 25,
-    "EXCEPTION_HANDLER": "foodbasket.common.rest.exception_handler",
+    "EXCEPTION_HANDLER": "foodbasket.common.drf.exception_handler",
 }
 
 RESTAURANT_DETAIL_POPULAR_PRODUCTS_LIMIT = 2

@@ -29,11 +29,11 @@ class OrderCompleteSerializer(serializers.Serializer):  # noqa
 
         if len(restaurant_ids) > 1:
             raise serializers.ValidationError(
-                _("All items must be from the same restaurant.")
+                _("Each item must be from the same restaurant.")
             )
         if len(product_ids) != len(products):
             raise serializers.ValidationError(
-                _("All items must be of different products.")
+                _("Each item must be of different products.")
             )
         return items
 

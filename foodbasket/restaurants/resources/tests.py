@@ -70,7 +70,7 @@ class RestaurantResourceTestCase(TestCase):
 
         response_data = response.json()
         detail = response_data.get("detail", "")
-        self.assertIn("There are some references to it:", detail)
+        self.assertIn("There are some references to the object:", detail)
 
     def test_create(self):
         url = reverse("restaurant-list")
