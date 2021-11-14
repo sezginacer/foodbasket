@@ -4,11 +4,11 @@ from django.db import models
 from django.db.models.signals import post_save
 from django.utils.translation import gettext_lazy as _
 
+from foodbasket.common.model import BaseModel
 from foodbasket.orders.enums import OrderStatus
-from foodbasket.orders.receivers import add_order_to_queue
+from foodbasket.orders.receivers import publish_order
 from foodbasket.products.models import Product
 from foodbasket.restaurants.models import Restaurant
-from foodbasket.utils.model import BaseModel
 
 
 class Order(BaseModel):
@@ -53,4 +53,4 @@ class OrderItem(BaseModel):
         return f"{self.order.number}"
 
 
-post_save.connect(add_order_to_queue, sender=Order)
+post_save.connect(publish_order, sender=Order)

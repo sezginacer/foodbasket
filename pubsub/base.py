@@ -23,7 +23,7 @@ class PubSub(object):
         super().__init__()
         self.registry = defaultdict(list)
 
-    def publish(self, queue, data):
+    def publish(self, channel, data):
         raise NotImplementedError
 
     def subscriber(self, channel):

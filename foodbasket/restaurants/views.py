@@ -15,13 +15,12 @@ from foodbasket.restaurants.service import RestaurantService
 class RestaurantListView(generics.ListAPIView):
     permission_classes = (permissions.AllowAny,)
     queryset = (
-        Restaurant.objects.all()
+        Restaurant.objects.actives()
         .alias(
             order_count=Count(
                 "orders", filter=Q(orders__status__in=[OrderStatus.DELIVERED])
             )
         )
-        .actives()
         .order_by("-order_count", "-created_date")
     )
     serializer_class = RestaurantListSerializer
@@ -29,7 +28,7 @@ class RestaurantListView(generics.ListAPIView):
 
 class RestaurantDetailView(generics.RetrieveAPIView):
     permission_classes = (permissions.AllowAny,)
-    queryset = Restaurant.objects.all()
+    queryset = Restaurant.objects.actives()
     serializer_class = RestaurantDetailSerializer
     lookup_url_kwarg = "uuid"
     lookup_field = "uuid"

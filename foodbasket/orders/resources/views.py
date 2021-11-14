@@ -5,6 +5,7 @@ from rest_framework.response import Response
 from rest_framework.views import APIView
 from rest_framework.viewsets import GenericViewSet
 
+from foodbasket.common.mixins import MultiSerializerViewSetMixin
 from foodbasket.orders.enums import OrderStatus
 from foodbasket.orders.models import Order, OrderItem
 from foodbasket.orders.resources.serializers import (
@@ -12,7 +13,6 @@ from foodbasket.orders.resources.serializers import (
     OrderUpdateSerializer,
     StatusSerializer,
 )
-from foodbasket.utils.mixins import MultiSerializerViewSetMixin
 
 
 class OrderViewSet(

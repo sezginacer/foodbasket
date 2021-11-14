@@ -4,8 +4,8 @@ from django.db import models
 from django.urls import reverse
 from django.utils.translation import gettext_lazy as _
 
+from foodbasket.common.model import BaseModel
 from foodbasket.restaurants.managers import RestaurantQuerySet
-from foodbasket.utils.model import BaseModel
 
 
 class Restaurant(BaseModel):

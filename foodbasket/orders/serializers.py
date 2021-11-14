@@ -3,10 +3,10 @@ from django.utils.translation import gettext_lazy as _
 from rest_framework import serializers
 from rest_framework.fields import CurrentUserDefault
 
+from foodbasket.common.orders import generate_order_number
 from foodbasket.orders.enums import OrderStatus
 from foodbasket.orders.models import Order, OrderItem
 from foodbasket.products.models import Product
-from foodbasket.utils.orders import generate_order_number
 
 
 class OrderItemCompleteSerializer(serializers.Serializer):  # noqa

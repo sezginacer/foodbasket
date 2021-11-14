@@ -158,12 +158,12 @@ REST_FRAMEWORK = {
     ],
     "DEFAULT_PAGINATION_CLASS": "rest_framework.pagination.LimitOffsetPagination",
     "PAGE_SIZE": 25,
-    "EXCEPTION_HANDLER": "foodbasket.utils.rest.exception_handler",
+    "EXCEPTION_HANDLER": "foodbasket.common.rest.exception_handler",
 }
 
 RESTAURANT_DETAIL_POPULAR_PRODUCTS_LIMIT = 2
 
-ORDER_QUEUE = env("ORDER_QUEUE", default="orders")
+ORDER_PUBSUB_CHANNEL = env("ORDER_PUBSUB_CHANNEL", default="orders")
 PUBSUB_CONFIG = {
     "class": env("PUBSUB_CLASS", default="pubsub.redis.RedisPubSub"),
     "options": env.dict(

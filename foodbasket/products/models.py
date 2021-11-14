@@ -4,9 +4,9 @@ from django.core.validators import MinValueValidator
 from django.db import models
 from django.utils.translation import gettext_lazy as _
 
+from foodbasket.common.model import BaseModel
 from foodbasket.products.managers import ProductQuerySet
 from foodbasket.restaurants.models import Restaurant
-from foodbasket.utils.model import BaseModel
 
 
 class Category(BaseModel):

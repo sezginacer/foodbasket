@@ -4,8 +4,8 @@ from django.contrib.auth.password_validation import (
 from rest_framework import serializers
 from rest_framework.validators import UniqueValidator
 
+from foodbasket.common.users import generate_username
 from foodbasket.users.models import User
-from foodbasket.utils.users import generate_username
 
 
 class LoginSerializer(serializers.Serializer):  # noqa
