@@ -19,12 +19,14 @@ from rest_framework.routers import SimpleRouter
 from foodbasket.orders.resources.views import OrderViewSet, StatusView
 from foodbasket.products.resources.views import CategoryViewSet, ProductViewSet
 from foodbasket.restaurants.resources.views import RestaurantViewSet
+from foodbasket.users.resources.views import UserViewSet
 
 router = SimpleRouter()
 router.register("orders", OrderViewSet)
 router.register("products", ProductViewSet)
 router.register("categories", CategoryViewSet)
 router.register("restaurants", RestaurantViewSet)
+router.register("users", UserViewSet)
 
 api_urls = router.urls + [
     path("status/", StatusView.as_view(), name="status"),
