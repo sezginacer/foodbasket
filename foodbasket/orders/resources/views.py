@@ -26,6 +26,8 @@ class OrderViewSet(
     permission_classes = (permissions.IsAdminUser,)
     serializer_class = OrderSerializer
     serializer_classes = {"update": OrderUpdateSerializer}
+    filterset_fields = ["status", "user__email", "restaurant__name"]
+    ordering_fields = ["created_date", "modified_date", "amount"]
     queryset = (
         Order.objects.all()
         .order_by("-created_date")

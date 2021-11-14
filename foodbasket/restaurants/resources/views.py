@@ -9,3 +9,5 @@ class RestaurantViewSet(ModelViewSet):
     permission_classes = (permissions.IsAdminUser,)
     queryset = Restaurant.objects.all()
     serializer_class = RestaurantSerializer
+    filterset_fields = ["name", "is_active"]
+    ordering_fields = ["name", "created_date", "modified_date"]
