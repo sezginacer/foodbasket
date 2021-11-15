@@ -8,6 +8,7 @@ from rest_framework.viewsets import GenericViewSet
 from foodbasket.common.mixins import MultiSerializerViewSetMixin
 from foodbasket.orders.enums import OrderStatus
 from foodbasket.orders.models import Order, OrderItem
+from foodbasket.orders.resources.filters import OrderFilter
 from foodbasket.orders.resources.serializers import (
     OrderSerializer,
     OrderUpdateSerializer,
@@ -26,8 +27,6 @@ class OrderViewSet(
     permission_classes = [permissions.IsAdminUser]
     serializer_class = OrderSerializer
     serializer_classes = {"update": OrderUpdateSerializer}
-    filterset_fields = ["status", "user__email", "restaurant__name"]
-    ordering_fields = ["created_date", "modified_date", "amount"]
     queryset = (
         Order.objects.all()
         .order_by("-created_date")
@@ -43,6 +42,8 @@ class OrderViewSet(
     )
     lookup_field = "number"
     lookup_url_kwarg = "number"
+    filterset_class = OrderFilter
+    ordering_fields = ["created_date", "modified_date", "amount"]
 
 
 class StatusView(APIView):

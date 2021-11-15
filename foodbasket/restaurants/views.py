@@ -3,6 +3,7 @@ from rest_framework import generics, permissions
 from rest_framework.response import Response
 
 from foodbasket.orders.enums import OrderStatus
+from foodbasket.restaurants.filters import RestaurantListFilter
 from foodbasket.restaurants.models import Restaurant
 from foodbasket.restaurants.serializers import (
     RestaurantDetailSerializer,
@@ -23,7 +24,7 @@ class RestaurantListView(generics.ListAPIView):
         .order_by("-order_count", "-created_date")
     )
     serializer_class = RestaurantListSerializer
-    filterset_fields = ["name"]
+    filterset_class = RestaurantListFilter
     ordering_fields = ["name"]
 
 
