@@ -4,7 +4,7 @@ from django.utils.translation import gettext_lazy as _
 from foodbasket.orders.enums import OrderStatus
 
 
-class OrderStatusChangeValidator(object):
+class OrderStatusChangeValidator:
     requires_context = True
 
     def __call__(self, status, serializer_field):

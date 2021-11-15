@@ -4,7 +4,7 @@ import time
 import requests
 
 
-class FoodBasketDemoService(object):
+class FoodBasketDemoService:
     def __init__(self, email, password, base_url="http://localhost:8080"):
         self.base_url = base_url
         self.email = email

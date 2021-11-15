@@ -5,7 +5,7 @@ from foodbasket.orders.enums import OrderStatus
 from foodbasket.products.models import Category, Product
 
 
-class RestaurantService(object):
+class RestaurantService:
     def get_popular_products(self, restaurant, limit=None):  # noqa
         limit = limit or settings.RESTAURANT_DETAIL_POPULAR_PRODUCTS_LIMIT
 

@@ -1,4 +1,4 @@
-class MultiSerializerViewSetMixin(object):
+class MultiSerializerViewSetMixin:
     serializer_classes = {}
 
     def get_serializer_class(self):

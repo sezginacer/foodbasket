@@ -1,7 +1,7 @@
 import json
 
 
-class Serializer(object):
+class Serializer:
     def serialize(self, data):
         raise NotImplementedError
 

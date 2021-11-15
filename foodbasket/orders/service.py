@@ -3,7 +3,7 @@ from django.db import transaction
 from foodbasket.orders.models import Order, OrderItem
 
 
-class OrderService(object):
+class OrderService:
     @transaction.atomic()
     def create_order(self, items, user, number, status, **kwargs):
         order = Order(user=user, number=number, status=status)

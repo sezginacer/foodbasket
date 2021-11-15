@@ -5,7 +5,7 @@ from rest_framework.exceptions import AuthenticationFailed
 from foodbasket.users.models import User
 
 
-class AccountService(object):
+class AccountService:
     def authenticate(self, request, **credentials):
         user = django_authenticate(request, **credentials)
         if not user:

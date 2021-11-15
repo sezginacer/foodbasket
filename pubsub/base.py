@@ -1,7 +1,7 @@
 from collections import defaultdict
 
 
-class PubSub(object):
+class PubSub:
     """
     Subscription Usage
     >>> ps = PubSub()
