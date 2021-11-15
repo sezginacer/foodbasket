@@ -44,7 +44,7 @@ class ProductSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Product
-        exclude = ("is_active",)
+        exclude = ["is_active"]
 
 
 class OrderItemSerializer(serializers.ModelSerializer):
@@ -52,7 +52,7 @@ class OrderItemSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = OrderItem
-        exclude = ()
+        exclude = []
 
 
 class OrderSerializer(serializers.ModelSerializer):
@@ -60,4 +60,4 @@ class OrderSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Order
-        exclude = ()
+        exclude = []

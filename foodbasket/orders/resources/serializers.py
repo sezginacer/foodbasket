@@ -8,7 +8,7 @@ from foodbasket.orders.resources.validators import OrderStatusChangeValidator
 class OrderSerializer(serializers.ModelSerializer):
     class Meta:
         model = Order
-        exclude = ()
+        exclude = []
 
 
 class OrderUpdateSerializer(serializers.ModelSerializer):
@@ -18,7 +18,7 @@ class OrderUpdateSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Order
-        fields = ("status",)
+        fields = ["status"]
 
 
 class StatusSerializer(serializers.Serializer):  # noqa

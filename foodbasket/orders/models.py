@@ -47,7 +47,7 @@ class OrderItem(BaseModel):
     class Meta:
         verbose_name = _("order item")
         verbose_name_plural = _("order items")
-        unique_together = ("product", "order")
+        unique_together = ["product", "order"]
 
     def __str__(self):
         return f"{self.order.number}"

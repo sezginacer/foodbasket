@@ -6,7 +6,7 @@ from foodbasket.restaurants.resources.serializers import RestaurantSerializer
 
 
 class RestaurantViewSet(ModelViewSet):
-    permission_classes = (permissions.IsAdminUser,)
+    permission_classes = [permissions.IsAdminUser]
     queryset = Restaurant.objects.all()
     serializer_class = RestaurantSerializer
     filterset_fields = ["name", "is_active"]

@@ -6,7 +6,7 @@ from foodbasket.users.resources.serializers import UserSerializer
 
 
 class UserViewSet(ReadOnlyModelViewSet):
-    permission_classes = (permissions.IsAdminUser,)
+    permission_classes = [permissions.IsAdminUser]
     queryset = User.objects.all()
     serializer_class = UserSerializer
     filterset_fields = ["first_name", "last_name", "email", "is_staff"]

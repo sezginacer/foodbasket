@@ -39,7 +39,7 @@ class Product(BaseModel):
     class Meta:
         verbose_name = _("product")
         verbose_name_plural = _("products")
-        unique_together = ("name", "restaurant")
+        unique_together = ["name", "restaurant"]
 
     def __str__(self):
         return f"{self.name}"

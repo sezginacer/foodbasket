@@ -9,7 +9,7 @@ class ProductSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Product
-        fields = ("name", "price", "category", "pk")
+        fields = ["name", "price", "category", "pk"]
 
 
 class RestaurantListSerializer(serializers.ModelSerializer):
@@ -17,13 +17,13 @@ class RestaurantListSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Restaurant
-        fields = ("name", "uuid", "url")
+        fields = ["name", "uuid", "url"]
 
 
 class RestaurantSerializer(serializers.ModelSerializer):
     class Meta:
         model = Restaurant
-        fields = ("name", "uuid")
+        fields = ["name", "uuid"]
 
 
 class CategorySerializer(serializers.ModelSerializer):
@@ -31,7 +31,7 @@ class CategorySerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Category
-        fields = ("name", "uuid", "products")
+        fields = ["name", "uuid", "products"]
 
 
 class RestaurantDetailSerializer(serializers.Serializer):  # noqa

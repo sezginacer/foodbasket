@@ -7,7 +7,7 @@ from foodbasket.products.models import Category, Product
 class CategorySerializer(serializers.ModelSerializer):
     class Meta:
         model = Category
-        exclude = ()
+        exclude = []
 
 
 class ProductSerializer(serializers.ModelSerializer):
@@ -18,4 +18,4 @@ class ProductSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Product
-        exclude = ()
+        exclude = []

@@ -11,7 +11,7 @@ from foodbasket.users.service import AccountService
 
 
 class TokenView(APIView):
-    permission_classes = (permissions.AllowAny,)
+    permission_classes = [permissions.AllowAny]
     serializer_class = LoginSerializer
     throttle_scope = "token"
 
@@ -25,7 +25,7 @@ class TokenView(APIView):
 
 
 class RegisterView(APIView):
-    permission_classes = (permissions.AllowAny,)
+    permission_classes = [permissions.AllowAny]
     register_serializer = RegisterSerializer
     response_serializer = UserSerializer
     throttle_scope = "register"

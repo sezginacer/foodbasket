@@ -23,7 +23,7 @@ class OrderViewSet(
     GenericViewSet,
 ):
     http_method_names = ["get", "patch"]
-    permission_classes = (permissions.IsAdminUser,)
+    permission_classes = [permissions.IsAdminUser]
     serializer_class = OrderSerializer
     serializer_classes = {"update": OrderUpdateSerializer}
     filterset_fields = ["status", "user__email", "restaurant__name"]
@@ -46,7 +46,7 @@ class OrderViewSet(
 
 
 class StatusView(APIView):
-    permission_classes = (permissions.IsAdminUser,)
+    permission_classes = [permissions.IsAdminUser]
     serializer_class = StatusSerializer
 
     def get(self, request, *args, **kwargs):  # noqa

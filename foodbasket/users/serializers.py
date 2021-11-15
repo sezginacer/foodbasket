@@ -34,4 +34,4 @@ class RegisterSerializer(serializers.Serializer):  # noqa
 class UserSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
-        fields = ("first_name", "last_name", "email", "username")
+        fields = ["first_name", "last_name", "email", "username"]

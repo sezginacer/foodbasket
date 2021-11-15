@@ -7,7 +7,7 @@ from foodbasket.orders.service import OrderService
 
 
 class OrderCompleteView(APIView):
-    permission_classes = (permissions.IsAuthenticated,)
+    permission_classes = [permissions.IsAuthenticated]
     request_serializer = OrderCompleteSerializer
     response_serializer = OrderSerializer
     service = OrderService()
