@@ -1,0 +1,1927 @@
+{
+	"info": {
+		"_postman_id": "53341e0c-8fbc-4d78-975e-2742c0c0e019",
+		"name": "Foodbasket Project",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Public",
+			"item": [
+				{
+					"name": "Register",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"first_name\": \"John\",\n    \"last_name\": \"Doe\",\n    \"email\": \"john.doe@test.com\",\n    \"password\": \"yuasd123.\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{base_url}}/users/register/"
+					},
+					"response": [
+						{
+							"name": "Register",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"first_name\": \"John\",\n    \"last_name\": \"Doe\",\n    \"email\": \"john.doe@test.com\",\n    \"password\": \"yuasd123.\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": "{{base_url}}/users/register/"
+							},
+							"_postman_previewlanguage": null,
+							"header": null,
+							"cookie": [],
+							"body": null
+						}
+					]
+				},
+				{
+					"name": "Token",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"email\": \"john.doe@test.com\",\n    \"password\": \"yuasd123.\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{base_url}}/users/token/"
+					},
+					"response": [
+						{
+							"name": "Token",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"email\": \"john.doe@test.com\",\n    \"password\": \"yuasd123.\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": "{{base_url}}/users/token/"
+							},
+							"_postman_previewlanguage": null,
+							"header": null,
+							"cookie": [],
+							"body": null
+						}
+					]
+				},
+				{
+					"name": "Restaurant List",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Token {{user_token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/restaurants/",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"restaurants",
+								""
+							],
+							"query": [
+								{
+									"key": "name",
+									"value": "",
+									"disabled": true
+								},
+								{
+									"key": "ordering",
+									"value": "name",
+									"disabled": true
+								},
+								{
+									"key": "ordering",
+									"value": "-name",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Restaurant List",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Token {{user_token}}",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{base_url}}/restaurants/?ordering=name",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"restaurants",
+										""
+									],
+									"query": [
+										{
+											"key": "name",
+											"value": "",
+											"disabled": true
+										},
+										{
+											"key": "ordering",
+											"value": "name"
+										},
+										{
+											"key": "ordering",
+											"value": "-name",
+											"disabled": true
+										}
+									]
+								}
+							},
+							"_postman_previewlanguage": null,
+							"header": null,
+							"cookie": [],
+							"body": null
+						}
+					]
+				},
+				{
+					"name": "Restaurant Detail",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Token {{user_token}}",
+								"type": "text"
+							}
+						],
+						"url": "{{base_url}}/restaurants/{{sample_restaurant_uuid}}/"
+					},
+					"response": [
+						{
+							"name": "Restaurant Detail",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Token {{user_token}}",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{base_url}}/restaurants/b043c421-84d5-4c07-bfe3-5a5b751c1ddd/",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"restaurants",
+										"b043c421-84d5-4c07-bfe3-5a5b751c1ddd",
+										""
+									],
+									"query": [
+										{
+											"key": "",
+											"value": null,
+											"disabled": true
+										}
+									]
+								}
+							},
+							"_postman_previewlanguage": null,
+							"header": null,
+							"cookie": [],
+							"body": null
+						}
+					]
+				},
+				{
+					"name": "Complete Order",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Token {{user_token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"items\": [\n        {\n            \"product\": 1,\n            \"quantity\": 2\n        },\n        {\n            \"product\": 2,\n            \"quantity\": 3\n        }\n    ]\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{base_url}}/orders/complete/"
+					},
+					"response": [
+						{
+							"name": "Complete Order",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "Authorization",
+										"value": "Token {{user_token}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"items\": [\n        {\n            \"product\": 1,\n            \"quantity\": 2\n        },\n        {\n            \"product\": 2,\n            \"quantity\": 3\n        }\n    ]\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": "{{base_url}}/orders/complete/"
+							},
+							"_postman_previewlanguage": null,
+							"header": null,
+							"cookie": [],
+							"body": null
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Administration (API)",
+			"item": [
+				{
+					"name": "Category",
+					"item": [
+						{
+							"name": "Category List",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Token {{admin_user_token}}",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{base_url}}/api/v1/categories/",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"categories",
+										""
+									],
+									"query": [
+										{
+											"key": "name",
+											"value": null,
+											"disabled": true
+										},
+										{
+											"key": "ordering",
+											"value": "created_date",
+											"disabled": true
+										},
+										{
+											"key": "ordering",
+											"value": "-created_date",
+											"disabled": true
+										},
+										{
+											"key": "ordering",
+											"value": "modified_date",
+											"disabled": true
+										},
+										{
+											"key": "ordering",
+											"value": "modified_date",
+											"disabled": true
+										},
+										{
+											"key": "ordering",
+											"value": "name",
+											"disabled": true
+										},
+										{
+											"key": "ordering",
+											"value": "-name",
+											"disabled": true
+										}
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "Category List",
+									"originalRequest": {
+										"method": "GET",
+										"header": [
+											{
+												"key": "Authorization",
+												"value": "Token {{admin_user_token}}",
+												"type": "text"
+											}
+										],
+										"url": {
+											"raw": "{{base_url}}/api/v1/categories/?name=ev yemekleri&ordering=modified_date",
+											"host": [
+												"{{base_url}}"
+											],
+											"path": [
+												"api",
+												"v1",
+												"categories",
+												""
+											],
+											"query": [
+												{
+													"key": "name",
+													"value": "ev yemekleri"
+												},
+												{
+													"key": "ordering",
+													"value": "created_date",
+													"disabled": true
+												},
+												{
+													"key": "ordering",
+													"value": "-created_date",
+													"disabled": true
+												},
+												{
+													"key": "ordering",
+													"value": "modified_date"
+												},
+												{
+													"key": "ordering",
+													"value": "-modified_date",
+													"disabled": true
+												},
+												{
+													"key": "ordering",
+													"value": "name",
+													"disabled": true
+												},
+												{
+													"key": "ordering",
+													"value": "-name",
+													"disabled": true
+												}
+											]
+										}
+									},
+									"_postman_previewlanguage": null,
+									"header": null,
+									"cookie": [],
+									"body": null
+								}
+							]
+						},
+						{
+							"name": "Category Detail",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Token {{admin_user_token}}",
+										"type": "text"
+									}
+								],
+								"url": "{{base_url}}/api/v1/categories/{{sample_category_id}}/"
+							},
+							"response": [
+								{
+									"name": "Category Detail",
+									"originalRequest": {
+										"method": "GET",
+										"header": [
+											{
+												"key": "Authorization",
+												"value": "Token {{admin_user_token}}",
+												"type": "text"
+											}
+										],
+										"url": "{{base_url}}/api/v1/categories/1/"
+									},
+									"_postman_previewlanguage": null,
+									"header": null,
+									"cookie": [],
+									"body": null
+								}
+							]
+						},
+						{
+							"name": "Category Create",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Token {{admin_user_token}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"name\": \"Uzak Doğu Mutfağı\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": "{{base_url}}/api/v1/categories/"
+							},
+							"response": [
+								{
+									"name": "Category Create",
+									"originalRequest": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "Authorization",
+												"value": "Token {{admin_user_token}}",
+												"type": "text"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n    \"name\": \"Uzak Doğu Mutfağı\"\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": "{{base_url}}/api/v1/categories/"
+									},
+									"_postman_previewlanguage": null,
+									"header": null,
+									"cookie": [],
+									"body": null
+								}
+							]
+						},
+						{
+							"name": "Category Update",
+							"request": {
+								"method": "PATCH",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Token {{admin_user_token}}",
+										"type": "text"
+									}
+								],
+								"url": "{{base_url}}/api/v1/categories/{{sample_category_id}}/"
+							},
+							"response": [
+								{
+									"name": "Category Update",
+									"originalRequest": {
+										"method": "PATCH",
+										"header": [
+											{
+												"key": "Authorization",
+												"value": "Token {{admin_user_token}}",
+												"type": "text"
+											}
+										],
+										"url": "{{base_url}}/api/v1/categories/1/"
+									},
+									"_postman_previewlanguage": null,
+									"header": null,
+									"cookie": [],
+									"body": null
+								}
+							]
+						},
+						{
+							"name": "Category Update",
+							"request": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Token {{admin_user_token}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"name\": \"Döner / Kebap\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": "{{base_url}}/api/v1/categories/{{sample_category_id}}/"
+							},
+							"response": [
+								{
+									"name": "Category Update",
+									"originalRequest": {
+										"method": "PUT",
+										"header": [
+											{
+												"key": "Authorization",
+												"value": "Token {{admin_user_token}}",
+												"type": "text"
+											},
+											{
+												"key": "Content-Type",
+												"name": "Content-Type",
+												"value": "application/json",
+												"type": "text"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n    \"name\": \"Döner / Kebap\"\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": "{{base_url}}/api/v1/categories/1/"
+									},
+									"_postman_previewlanguage": null,
+									"header": null,
+									"cookie": [],
+									"body": null
+								}
+							]
+						},
+						{
+							"name": "Category Delete",
+							"request": {
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Token {{admin_user_token}}",
+										"type": "text"
+									},
+									{
+										"key": "Accept-Language",
+										"value": "tr-tr",
+										"type": "text",
+										"disabled": true
+									}
+								],
+								"url": "{{base_url}}/api/v1/categories/{{sample_category_id}}/"
+							},
+							"response": [
+								{
+									"name": "Category Delete",
+									"originalRequest": {
+										"method": "DELETE",
+										"header": [
+											{
+												"key": "Authorization",
+												"value": "Token {{admin_user_token}}",
+												"type": "text"
+											}
+										],
+										"url": "{{base_url}}/api/v1/categories/1/"
+									},
+									"_postman_previewlanguage": null,
+									"header": null,
+									"cookie": [],
+									"body": null
+								}
+							]
+						}
+					]
+				},
+				{
+					"name": "Restaurant",
+					"item": [
+						{
+							"name": "Restaurant List",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Token {{admin_user_token}}",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{base_url}}/api/v1/restaurants/",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"restaurants",
+										""
+									],
+									"query": [
+										{
+											"key": "name",
+											"value": null,
+											"disabled": true
+										},
+										{
+											"key": "is_active",
+											"value": null,
+											"disabled": true
+										},
+										{
+											"key": "ordering",
+											"value": "name",
+											"disabled": true
+										},
+										{
+											"key": "ordering",
+											"value": "-name",
+											"disabled": true
+										},
+										{
+											"key": "ordering",
+											"value": "created_date",
+											"disabled": true
+										},
+										{
+											"key": "ordering",
+											"value": "-created_date",
+											"disabled": true
+										},
+										{
+											"key": "ordering",
+											"value": "modified_date",
+											"disabled": true
+										},
+										{
+											"key": "ordering",
+											"value": "-modified_date",
+											"disabled": true
+										}
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "Restaurant List",
+									"originalRequest": {
+										"method": "GET",
+										"header": [
+											{
+												"key": "Authorization",
+												"value": "Token {{admin_user_token}}",
+												"type": "text"
+											}
+										],
+										"url": {
+											"raw": "{{base_url}}/api/v1/restaurants/?name=brother&ordering=-modified_date",
+											"host": [
+												"{{base_url}}"
+											],
+											"path": [
+												"api",
+												"v1",
+												"restaurants",
+												""
+											],
+											"query": [
+												{
+													"key": "name",
+													"value": "brother"
+												},
+												{
+													"key": "is_active",
+													"value": null,
+													"disabled": true
+												},
+												{
+													"key": "ordering",
+													"value": "name",
+													"disabled": true
+												},
+												{
+													"key": "ordering",
+													"value": "-name",
+													"disabled": true
+												},
+												{
+													"key": "ordering",
+													"value": "created_date",
+													"disabled": true
+												},
+												{
+													"key": "ordering",
+													"value": "-created_date",
+													"disabled": true
+												},
+												{
+													"key": "ordering",
+													"value": "modified_date",
+													"disabled": true
+												},
+												{
+													"key": "ordering",
+													"value": "-modified_date"
+												}
+											]
+										}
+									},
+									"_postman_previewlanguage": null,
+									"header": null,
+									"cookie": [],
+									"body": null
+								}
+							]
+						},
+						{
+							"name": "Restaurant Detail",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Token {{admin_user_token}}",
+										"type": "text"
+									}
+								],
+								"url": "{{base_url}}/api/v1/restaurants/{{sample_restaurant_id}}/"
+							},
+							"response": [
+								{
+									"name": "Restaurant Detail",
+									"originalRequest": {
+										"method": "GET",
+										"header": [
+											{
+												"key": "Authorization",
+												"value": "Token {{admin_user_token}}",
+												"type": "text"
+											}
+										],
+										"url": "{{base_url}}/api/v1/restaurants/1/"
+									},
+									"_postman_previewlanguage": null,
+									"header": null,
+									"cookie": [],
+									"body": null
+								}
+							]
+						},
+						{
+							"name": "Restaurant Create",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Token  {{admin_user_token}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"name\": \"Kardeşler Fast-Food\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": "{{base_url}}/api/v1/restaurants/"
+							},
+							"response": [
+								{
+									"name": "Restaurant Create",
+									"originalRequest": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "Authorization",
+												"value": "Token  {{admin_user_token}}",
+												"type": "text"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n    \"name\": \"Kardeşler Fast-Food\"\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": "{{base_url}}/api/v1/restaurants/"
+									},
+									"_postman_previewlanguage": null,
+									"header": null,
+									"cookie": [],
+									"body": null
+								}
+							]
+						},
+						{
+							"name": "Restaurant Update",
+							"request": {
+								"method": "PATCH",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Token {{admin_user_token}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"name\": \"Çokk Süper Dönerci\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": "{{base_url}}/api/v1/restaurants/{{sample_restaurant_id}}/"
+							},
+							"response": [
+								{
+									"name": "Restaurant Update",
+									"originalRequest": {
+										"method": "PATCH",
+										"header": [
+											{
+												"key": "Authorization",
+												"value": "Token {{admin_user_token}}",
+												"type": "text"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n    \"name\": \"Çokk Süper Dönerci\"\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": "{{base_url}}/api/v1/restaurants/1/"
+									},
+									"_postman_previewlanguage": null,
+									"header": null,
+									"cookie": [],
+									"body": null
+								}
+							]
+						},
+						{
+							"name": "Restaurant Update",
+							"request": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Token {{admin_user_token}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"name\": \"Çokk Süper Dönerci\",\n    \"is_active\": false\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": "{{base_url}}/api/v1/restaurants/{{sample_restaurant_id}}/"
+							},
+							"response": [
+								{
+									"name": "Restaurant Update",
+									"originalRequest": {
+										"method": "PUT",
+										"header": [
+											{
+												"key": "Authorization",
+												"value": "Token {{admin_user_token}}",
+												"type": "text"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n    \"name\": \"Çokk Süper Dönerci\",\n    \"is_active\": false\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": "{{base_url}}/api/v1/restaurants/1/"
+									},
+									"_postman_previewlanguage": null,
+									"header": null,
+									"cookie": [],
+									"body": null
+								}
+							]
+						},
+						{
+							"name": "Restaurant Delete",
+							"request": {
+								"auth": {
+									"type": "noauth"
+								},
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Token {{admin_user_token}}",
+										"type": "text"
+									}
+								],
+								"url": "{{base_url}}/api/v1/restaurants/{{sample_restaurant_id}}/"
+							},
+							"response": [
+								{
+									"name": "Restaurant Delete",
+									"originalRequest": {
+										"method": "DELETE",
+										"header": [
+											{
+												"key": "Authorization",
+												"value": "Token {{admin_user_token}}",
+												"type": "text"
+											}
+										],
+										"url": "{{base_url}}/api/v1/restaurants/1/"
+									},
+									"_postman_previewlanguage": null,
+									"header": null,
+									"cookie": [],
+									"body": null
+								}
+							]
+						}
+					]
+				},
+				{
+					"name": "Product",
+					"item": [
+						{
+							"name": "Product List",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Token {{admin_user_token}}",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{base_url}}/api/v1/products/",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"products",
+										""
+									],
+									"query": [
+										{
+											"key": "name",
+											"value": "",
+											"disabled": true
+										},
+										{
+											"key": "category__name",
+											"value": null,
+											"disabled": true
+										},
+										{
+											"key": "restaurant__name",
+											"value": null,
+											"disabled": true
+										},
+										{
+											"key": "is_active",
+											"value": null,
+											"disabled": true
+										},
+										{
+											"key": "ordering",
+											"value": "created_date",
+											"disabled": true
+										},
+										{
+											"key": "ordering",
+											"value": "-created_date",
+											"disabled": true
+										},
+										{
+											"key": "ordering",
+											"value": "modified_date",
+											"disabled": true
+										},
+										{
+											"key": "ordering",
+											"value": "-modified_date",
+											"disabled": true
+										},
+										{
+											"key": "ordering",
+											"value": "price",
+											"disabled": true
+										},
+										{
+											"key": "ordering",
+											"value": "-price",
+											"disabled": true
+										},
+										{
+											"key": "ordering",
+											"value": "name",
+											"disabled": true
+										},
+										{
+											"key": "ordering",
+											"value": "-name",
+											"disabled": true
+										}
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "Product List",
+									"originalRequest": {
+										"method": "GET",
+										"header": [
+											{
+												"key": "Authorization",
+												"value": "Token {{admin_user_token}}",
+												"type": "text"
+											}
+										],
+										"url": {
+											"raw": "{{base_url}}/api/v1/products/?name=brothers&is_active=true&ordering=price",
+											"host": [
+												"{{base_url}}"
+											],
+											"path": [
+												"api",
+												"v1",
+												"products",
+												""
+											],
+											"query": [
+												{
+													"key": "name",
+													"value": "brothers"
+												},
+												{
+													"key": "category__name",
+													"value": null,
+													"disabled": true
+												},
+												{
+													"key": "restaurant__name",
+													"value": null,
+													"disabled": true
+												},
+												{
+													"key": "is_active",
+													"value": "true"
+												},
+												{
+													"key": "ordering",
+													"value": "created_date",
+													"disabled": true
+												},
+												{
+													"key": "ordering",
+													"value": "-created_date",
+													"disabled": true
+												},
+												{
+													"key": "ordering",
+													"value": "modified_date",
+													"disabled": true
+												},
+												{
+													"key": "ordering",
+													"value": "-modified_date",
+													"disabled": true
+												},
+												{
+													"key": "ordering",
+													"value": "price"
+												},
+												{
+													"key": "ordering",
+													"value": "-price",
+													"disabled": true
+												},
+												{
+													"key": "ordering",
+													"value": "name",
+													"disabled": true
+												},
+												{
+													"key": "ordering",
+													"value": "-name",
+													"disabled": true
+												}
+											]
+										}
+									},
+									"_postman_previewlanguage": null,
+									"header": null,
+									"cookie": [],
+									"body": null
+								}
+							]
+						},
+						{
+							"name": "Product Detail",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Token {{admin_user_token}}",
+										"type": "text"
+									}
+								],
+								"url": "{{base_url}}/api/v1/products/{{sample_product_id}}/"
+							},
+							"response": [
+								{
+									"name": "Product Detail",
+									"originalRequest": {
+										"method": "GET",
+										"header": [],
+										"url": "{{base_url}}/api/v1/products/1/"
+									},
+									"_postman_previewlanguage": null,
+									"header": null,
+									"cookie": [],
+									"body": null
+								}
+							]
+						},
+						{
+							"name": "Product Create",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Token {{admin_user_token}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"name\": \"Lahmacun\",\n    \"price\": \"9.90\",\n    \"category\": 1,\n    \"restaurant\": 1\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": "{{base_url}}/api/v1/products/"
+							},
+							"response": [
+								{
+									"name": "Product Create",
+									"originalRequest": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "Authorization",
+												"value": "Token {{admin_user_token}}",
+												"type": "text"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n    \"name\": \"Lahmacun\",\n    \"price\": \"9.90\",\n    \"category\": 1,\n    \"restaurant\": 1\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": "{{base_url}}/api/v1/products/"
+									},
+									"_postman_previewlanguage": null,
+									"header": null,
+									"cookie": [],
+									"body": null
+								}
+							]
+						},
+						{
+							"name": "Product Update",
+							"request": {
+								"method": "PATCH",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Token {{admin_user_token}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"is_active\": false\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": "{{base_url}}/api/v1/products/{{sample_product_id}}/"
+							},
+							"response": [
+								{
+									"name": "Product Update",
+									"originalRequest": {
+										"method": "PATCH",
+										"header": [
+											{
+												"key": "Authorization",
+												"value": "Token {{admin_user_token}}",
+												"type": "text"
+											}
+										],
+										"url": "{{base_url}}/api/v1/products/1/"
+									},
+									"_postman_previewlanguage": null,
+									"header": null,
+									"cookie": [],
+									"body": null
+								}
+							]
+						},
+						{
+							"name": "Product Update",
+							"request": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Token {{admin_user_token}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"name\": \"Tavuk Döner\",\n    \"is_active\": true,\n    \"price\": \"21.90\",\n    \"category\": 2,\n    \"restaurant\": 1\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": "{{base_url}}/api/v1/products/{{sample_product_id}}/"
+							},
+							"response": [
+								{
+									"name": "Product Update",
+									"originalRequest": {
+										"method": "PUT",
+										"header": [
+											{
+												"key": "Authorization",
+												"value": "Token {{admin_user_token}}",
+												"type": "text"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n    \"name\": \"Tavuk Döner\",\n    \"is_active\": true,\n    \"price\": \"21.90\",\n    \"category\": 2,\n    \"restaurant\": 1\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": "{{base_url}}/api/v1/products/1/"
+									},
+									"_postman_previewlanguage": null,
+									"header": null,
+									"cookie": [],
+									"body": null
+								}
+							]
+						},
+						{
+							"name": "Product Delete",
+							"request": {
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Token {{admin_user_token}}",
+										"type": "text"
+									}
+								],
+								"url": "{{base_url}}/api/v1/products/{{sample_product_id}}/"
+							},
+							"response": [
+								{
+									"name": "Product Delete",
+									"originalRequest": {
+										"method": "DELETE",
+										"header": [
+											{
+												"key": "Authorization",
+												"value": "Token {{admin_user_token}}",
+												"type": "text"
+											}
+										],
+										"url": "{{base_url}}/api/v1/products/1/"
+									},
+									"_postman_previewlanguage": null,
+									"header": null,
+									"cookie": [],
+									"body": null
+								}
+							]
+						}
+					]
+				},
+				{
+					"name": "Order",
+					"item": [
+						{
+							"name": "Order List",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Token {{admin_user_token}}",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{base_url}}/api/v1/orders/",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"orders",
+										""
+									],
+									"query": [
+										{
+											"key": "restaurant__name",
+											"value": "{{sample_restaurant_name}}",
+											"disabled": true
+										},
+										{
+											"key": "status",
+											"value": "{{status_cancelled}}",
+											"disabled": true
+										},
+										{
+											"key": "user__email",
+											"value": "{{sample_user_email}}",
+											"disabled": true
+										},
+										{
+											"key": "ordering",
+											"value": "created_date",
+											"disabled": true
+										},
+										{
+											"key": "ordering",
+											"value": "modified_date",
+											"disabled": true
+										},
+										{
+											"key": "ordering",
+											"value": "amount",
+											"disabled": true
+										},
+										{
+											"key": "ordering",
+											"value": "-created_date",
+											"disabled": true
+										},
+										{
+											"key": "ordering",
+											"value": "-modified_date",
+											"disabled": true
+										},
+										{
+											"key": "ordering",
+											"value": "-amount",
+											"disabled": true
+										}
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "Order List",
+									"originalRequest": {
+										"method": "GET",
+										"header": [
+											{
+												"key": "Authorization",
+												"value": "Token {{admin_user_token}}",
+												"type": "text"
+											}
+										],
+										"url": {
+											"raw": "{{base_url}}/api/v1/orders/?status=1&ordering=amount",
+											"host": [
+												"{{base_url}}"
+											],
+											"path": [
+												"api",
+												"v1",
+												"orders",
+												""
+											],
+											"query": [
+												{
+													"key": "restaurant__name",
+													"value": "{{sample_restaurant_name}}",
+													"disabled": true
+												},
+												{
+													"key": "user__email",
+													"value": "{{sample_user_email}}",
+													"disabled": true
+												},
+												{
+													"key": "status",
+													"value": "1"
+												},
+												{
+													"key": "ordering",
+													"value": "created_date",
+													"disabled": true
+												},
+												{
+													"key": "ordering",
+													"value": "modified_date",
+													"disabled": true
+												},
+												{
+													"key": "ordering",
+													"value": "amount"
+												},
+												{
+													"key": "ordering",
+													"value": "-created_date",
+													"disabled": true
+												},
+												{
+													"key": "ordering",
+													"value": "-modified_date",
+													"disabled": true
+												},
+												{
+													"key": "ordering",
+													"value": "-amount",
+													"disabled": true
+												}
+											]
+										}
+									},
+									"_postman_previewlanguage": null,
+									"header": null,
+									"cookie": [],
+									"body": null
+								}
+							]
+						},
+						{
+							"name": "Order Detail",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Token {{admin_user_token}}",
+										"type": "text"
+									}
+								],
+								"url": "{{base_url}}/api/v1/orders/{{sample_order_number}}/"
+							},
+							"response": [
+								{
+									"name": "Order Detail",
+									"originalRequest": {
+										"method": "GET",
+										"header": [
+											{
+												"key": "Authorization",
+												"value": "Token {{admin_user_token}}",
+												"type": "text"
+											}
+										],
+										"url": "{{base_url}}/api/v1/orders/1234567890/"
+									},
+									"_postman_previewlanguage": null,
+									"header": null,
+									"cookie": [],
+									"body": null
+								}
+							]
+						},
+						{
+							"name": "Order Update",
+							"request": {
+								"method": "PATCH",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Token {{admin_user_token}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"status\": 2\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": "{{base_url}}/api/v1/orders/{{sample_order_number}}/"
+							},
+							"response": [
+								{
+									"name": "Order Update",
+									"originalRequest": {
+										"method": "PATCH",
+										"header": [
+											{
+												"key": "Authorization",
+												"value": "Token {{admin_user_token}}",
+												"type": "text"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n    \"status\": 2\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": "{{base_url}}/api/v1/orders/1234567890/"
+									},
+									"_postman_previewlanguage": null,
+									"header": null,
+									"cookie": [],
+									"body": null
+								}
+							]
+						}
+					]
+				},
+				{
+					"name": "User",
+					"item": [
+						{
+							"name": "User List",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Token {{admin_user_token}}",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{base_url}}/api/v1/users/",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"users",
+										""
+									],
+									"query": [
+										{
+											"key": "first_name",
+											"value": null,
+											"disabled": true
+										},
+										{
+											"key": "last_name",
+											"value": null,
+											"disabled": true
+										},
+										{
+											"key": "email",
+											"value": null,
+											"disabled": true
+										},
+										{
+											"key": "is_staff",
+											"value": "",
+											"disabled": true
+										},
+										{
+											"key": "ordering",
+											"value": "date_joined",
+											"disabled": true
+										},
+										{
+											"key": "ordering",
+											"value": "-date_joined",
+											"disabled": true
+										}
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "User List",
+									"originalRequest": {
+										"method": "GET",
+										"header": [
+											{
+												"key": "Authorization",
+												"value": "Token {{admin_user_token}}",
+												"type": "text"
+											}
+										],
+										"url": {
+											"raw": "{{base_url}}/api/v1/users/?first_name=Mehmet&is_staff=0&ordering=date_joined",
+											"host": [
+												"{{base_url}}"
+											],
+											"path": [
+												"api",
+												"v1",
+												"users",
+												""
+											],
+											"query": [
+												{
+													"key": "first_name",
+													"value": "Mehmet"
+												},
+												{
+													"key": "last_name",
+													"value": null,
+													"disabled": true
+												},
+												{
+													"key": "email",
+													"value": null,
+													"disabled": true
+												},
+												{
+													"key": "is_staff",
+													"value": "0"
+												},
+												{
+													"key": "ordering",
+													"value": "date_joined"
+												},
+												{
+													"key": "ordering",
+													"value": "-date_joined",
+													"disabled": true
+												}
+											]
+										}
+									},
+									"_postman_previewlanguage": null,
+									"header": null,
+									"cookie": [],
+									"body": null
+								}
+							]
+						},
+						{
+							"name": "User Detail",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Token {{admin_user_token}}",
+										"type": "text"
+									}
+								],
+								"url": "{{base_url}}/api/v1/users/{{sample_user_id}}/"
+							},
+							"response": [
+								{
+									"name": "User Detail",
+									"originalRequest": {
+										"method": "GET",
+										"header": [
+											{
+												"key": "Authorization",
+												"value": "Token {{admin_user_token}}",
+												"type": "text"
+											}
+										],
+										"url": "{{base_url}}/api/v1/users/1/"
+									},
+									"_postman_previewlanguage": null,
+									"header": null,
+									"cookie": [],
+									"body": null
+								}
+							]
+						}
+					]
+				},
+				{
+					"name": "Monitoring",
+					"item": [
+						{
+							"name": "Status",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Token {{admin_user_token}}",
+										"type": "text"
+									}
+								],
+								"url": "{{base_url}}/api/v1/status/"
+							},
+							"response": [
+								{
+									"name": "Status",
+									"originalRequest": {
+										"method": "GET",
+										"header": [
+											{
+												"key": "Authorization",
+												"value": "Token {{admin_user_token}}",
+												"type": "text"
+											}
+										],
+										"url": "{{base_url}}/api/v1/status/"
+									},
+									"_postman_previewlanguage": null,
+									"header": null,
+									"cookie": [],
+									"body": null
+								}
+							]
+						}
+					]
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "base_url",
+			"value": "http://localhost:8080"
+		},
+		{
+			"key": "user_token",
+			"value": "a7a5881bc0807982cf6af5d83866ade7d6bd4471"
+		},
+		{
+			"key": "sample_restaurant_uuid",
+			"value": "b043c421-84d5-4c07-bfe3-5a5b751c1ddd"
+		},
+		{
+			"key": "admin_user_token",
+			"value": "607a43a38913b55941d872c3eba107e5e19690c4"
+		},
+		{
+			"key": "sample_category_uuid",
+			"value": "77217e0f-7c68-4237-8ec5-8a3494cd4b2c"
+		},
+		{
+			"key": "sample_category_id",
+			"value": "1"
+		},
+		{
+			"key": "sample_restaurant_id",
+			"value": "1"
+		},
+		{
+			"key": "sample_product_id",
+			"value": "1"
+		},
+		{
+			"key": "sample_order_number",
+			"value": "1234567890"
+		},
+		{
+			"key": "status_cancelled",
+			"value": "6"
+		},
+		{
+			"key": "sample_restaurant_name",
+			"value": "burgerking"
+		},
+		{
+			"key": "sample_user_email",
+			"value": "test@test.com"
+		},
+		{
+			"key": "sample_user_id",
+			"value": "1"
+		}
+	]
+}
