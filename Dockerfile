@@ -2,7 +2,8 @@
 FROM python:3.9.6-alpine
 
 # set work directory
-WORKDIR /usr/src/app
+RUN mkdir /code
+WORKDIR /code
 
 # set environment variables
 ENV PYTHONDONTWRITEBYTECODE 1
@@ -16,10 +17,10 @@ RUN apk add gettext
 
 # install dependencies
 RUN pip install --upgrade pip
-COPY ./requirements.txt .
-COPY ./requirements-demo.txt .
+COPY requirements.txt  /code/
+COPY requirements-demo.txt  /code/
 RUN pip install -r requirements.txt
 RUN pip install -r requirements-demo.txt
 
 # copy project
-COPY . .
+COPY . /code/
