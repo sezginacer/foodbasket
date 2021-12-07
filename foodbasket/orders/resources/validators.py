@@ -10,11 +10,10 @@ class OrderStatusChangeValidator:
     def __call__(self, status, serializer_field):
         instance = serializer_field.parent.instance
 
-        valid_change = status - instance.status == 1
-        cancelled = (
-            instance.status == OrderStatus.WAITING_APPROVE
-            and status == OrderStatus.CANCELLED
-        )
+        change_valid = (status - instance.status) in [
+            (OrderStatus.APPROVED - OrderStatus.WAITING_APPROVE),  # step-by-step update
+            (OrderStatus.CANCELLED - OrderStatus.WAITING_APPROVE),  # cancel
+        ]
 
-        if not (valid_change or cancelled):
+        if not change_valid:
             raise ValidationError(_("This is not a valid status change."))
