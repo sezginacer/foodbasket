@@ -1,5 +1,7 @@
 from collections import defaultdict
 
+from django.utils.functional import cached_property
+
 
 class PubSub:
     """
@@ -17,11 +19,15 @@ class PubSub:
     >>> ps.start()
     """
 
-    serializer = None
+    serializer_class = None
 
-    def __init__(self, *args, **kwargs):
+    def __init__(self):
         super().__init__()
         self.registry = defaultdict(list)
+
+    @cached_property
+    def serializer(self):
+        return self.serializer_class()
 
     def publish(self, channel, data):
         raise NotImplementedError
@@ -38,7 +44,7 @@ class PubSub:
         raise NotImplementedError
 
     def serialize(self, data):
-        return self.serializer().serialize(data)
+        return self.serializer.serialize(data)
 
     def deserialize(self, raw):
-        return self.serializer().deserialize(raw)
+        return self.serializer.deserialize(raw)

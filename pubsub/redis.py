@@ -5,7 +5,7 @@ from pubsub.serializer import JsonSerializer
 
 
 class RedisPubSub(PubSub):
-    serializer = JsonSerializer
+    serializer_class = JsonSerializer
 
     def __init__(self, host="localhost", port=6379, db=1):
         super().__init__()
@@ -21,7 +21,9 @@ class RedisPubSub(PubSub):
             msg_type = message.get("type")
             channel = message.get("channel")
             data = message.get("data") or ""
-            if msg_type == "pmessage":
-                message_data = self.deserialize(data)
-                for subscriber in self.registry.get(channel.decode(), []):
-                    subscriber(message_data)
+            if msg_type != "pmessage":
+                continue
+
+            message_data = self.deserialize(data)
+            for subscriber in self.registry.get(channel.decode(), []):
+                subscriber(message_data)
