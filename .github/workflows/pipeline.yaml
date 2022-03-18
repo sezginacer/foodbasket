@@ -44,7 +44,7 @@ jobs:
           DATABASE_URL: postgres://postgres:postgres@127.0.0.1:5432/foodbasket
           DEBUG: 0
           PUBSUB_CLASS: pubsub.dummy.DummyPubSub
-          PUBSUB_OPTIONS: no=options
+          PUBSUB_OPTIONS: ''
         run: |
           python manage.py migrate --noinput
           python manage.py makemessages --all

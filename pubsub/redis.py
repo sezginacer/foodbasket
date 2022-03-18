@@ -18,12 +18,11 @@ class RedisPubSub(PubSub):
         p = self.r.pubsub()
         p.psubscribe(*self.registry)
         for message in p.listen():
-            msg_type = message.get("type")
-            channel = message.get("channel")
-            data = message.get("data") or ""
-            if msg_type != "pmessage":
+            if message.get("type") != "pmessage":
                 continue
 
+            channel = message.get("channel")
+            data = message.get("data") or ""
             message_data = self.deserialize(data)
             for subscriber in self.registry.get(channel.decode(), []):
                 subscriber(message_data)
