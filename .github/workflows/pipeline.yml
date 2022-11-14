@@ -1,4 +1,4 @@
-name: Foodbasket Project Pipeline
+name: Pipeline
 
 on:
   push:
@@ -49,8 +49,8 @@ jobs:
           python manage.py migrate --noinput
           python manage.py makemessages --all
           python manage.py compilemessages
-          coverage run --source='.' manage.py test
-      - name: Upload coverage to Codecov
+          coverage run --source='./foodbasket' manage.py test
+      - name: Upload coverage reports to Codecov
         uses: codecov/codecov-action@v3
         with:
           token: ${{ secrets.CODECOV_TOKEN }}
