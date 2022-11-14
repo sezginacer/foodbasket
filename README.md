@@ -1,4 +1,6 @@
-## FoodBasket - Yemeksepeti Challenge Project
+## FoodBasket - Delivery Hero Tech Hub Challenge Project
+![workflow](https://github.com/sezginacer/foodbasket/actions/workflows/pipeline.yml/badge.svg)
+[![codecov](https://codecov.io/gh/sezginacer/foodbasket/branch/master/graph/badge.svg?token=L6LRM6TX8B)](https://codecov.io/gh/sezginacer/foodbasket)
 - In order to run the project, execute in the project root directory `docker-compose up`.
 There may be a problem with PostgreSQL when running project with *docker* for the first time. 
   PostgreSQL may be unavailable for the first time of running `docker-compose up`. Terminating it 
