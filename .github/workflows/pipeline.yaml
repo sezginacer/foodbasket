@@ -49,4 +49,8 @@ jobs:
           python manage.py migrate --noinput
           python manage.py makemessages --all
           python manage.py compilemessages
-          python manage.py test --verbosity 2 --failfast
+          coverage run --source='.' manage.py test
+      - name: Upload coverage to Codecov
+        uses: codecov/codecov-action@v3
+        with:
+          token: ${{ secrets.CODECOV_TOKEN }}
