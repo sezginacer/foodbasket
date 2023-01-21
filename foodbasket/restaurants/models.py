@@ -19,8 +19,8 @@ class Restaurant(BaseModel):
         verbose_name = _("restaurant")
         verbose_name_plural = _("restaurants")
 
-    def __str__(self):
+    def __str__(self) -> str:
         return f"{self.name}"
 
-    def get_absolute_url(self):
+    def get_absolute_url(self) -> str:
         return reverse("detail-restaurant", kwargs={"uuid": self.uuid})

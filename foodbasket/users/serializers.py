@@ -26,7 +26,7 @@ class RegisterSerializer(serializers.Serializer):  # noqa
         validators=[UniqueValidator(queryset=User.objects.all())],
     )
 
-    def validate_password(self, password):  # noqa
+    def validate_password(self, password: str) -> str:  # noqa
         django_validate_password(password)
         return password
 

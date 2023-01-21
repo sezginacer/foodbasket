@@ -1,4 +1,5 @@
 from rest_framework import permissions, status
+from rest_framework.request import Request
 from rest_framework.response import Response
 from rest_framework.views import APIView
 
@@ -17,7 +18,7 @@ class TokenView(APIView):
 
     service = AccountService()
 
-    def post(self, request, *args, **kwargs):
+    def post(self, request: Request, *args, **kwargs) -> Response:
         serializer = self.serializer_class(data=request.data)
         serializer.is_valid(raise_exception=True)
         _, token = self.service.authenticate(request, **serializer.validated_data)
@@ -32,7 +33,7 @@ class RegisterView(APIView):
 
     service = AccountService()
 
-    def post(self, request, *args, **kwargs):
+    def post(self, request: Request, *args, **kwargs) -> Response:
         register_serializer = self.register_serializer(data=request.data)
         register_serializer.is_valid(raise_exception=True)
 

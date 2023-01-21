@@ -1,3 +1,5 @@
+from typing import Any, List, OrderedDict
+
 from django.core.validators import MinValueValidator
 from django.utils.translation import gettext_lazy as _
 from rest_framework import serializers
@@ -7,6 +9,8 @@ from foodbasket.common.orders import generate_order_number
 from foodbasket.orders.enums import OrderStatus
 from foodbasket.orders.models import Order, OrderItem
 from foodbasket.products.models import Product
+
+T = List[OrderedDict[str, Any]]
 
 
 class OrderItemCompleteSerializer(serializers.Serializer):  # noqa
@@ -22,7 +26,7 @@ class OrderCompleteSerializer(serializers.Serializer):  # noqa
     status = serializers.HiddenField(default=OrderStatus.WAITING_APPROVE)
     items = OrderItemCompleteSerializer(many=True, allow_empty=False)
 
-    def validate_items(self, items):  # noqa
+    def validate_items(self, items: T) -> T:  # noqa
         products = [item["product"] for item in items]
         restaurant_ids = {product.restaurant_id for product in products}
         product_ids = {product.id for product in products}

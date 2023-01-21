@@ -1,5 +1,6 @@
 from django.core.exceptions import ValidationError
 from django.utils.translation import gettext_lazy as _
+from rest_framework.fields import Field
 
 from foodbasket.orders.enums import OrderStatus
 
@@ -7,7 +8,7 @@ from foodbasket.orders.enums import OrderStatus
 class OrderStatusChangeValidator:
     requires_context = True
 
-    def __call__(self, status, serializer_field):
+    def __call__(self, status: OrderStatus, serializer_field: Field) -> None:
         instance = serializer_field.parent.instance
 
         change_valid = (status - instance.status) in [

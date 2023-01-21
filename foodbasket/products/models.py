@@ -17,7 +17,7 @@ class Category(BaseModel):
         verbose_name = _("category")
         verbose_name_plural = _("categories")
 
-    def __str__(self):
+    def __str__(self) -> str:
         return f"{self.name}"
 
 
@@ -41,5 +41,5 @@ class Product(BaseModel):
         verbose_name_plural = _("products")
         unique_together = ["name", "restaurant"]
 
-    def __str__(self):
+    def __str__(self) -> str:
         return f"{self.name}"

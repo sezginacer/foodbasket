@@ -1,6 +1,7 @@
 from django.db.models import Count, Prefetch
 from django.utils import timezone
 from rest_framework import mixins, permissions
+from rest_framework.request import Request
 from rest_framework.response import Response
 from rest_framework.views import APIView
 from rest_framework.viewsets import GenericViewSet
@@ -50,7 +51,7 @@ class StatusView(APIView):
     permission_classes = [permissions.IsAdminUser]
     serializer_class = StatusSerializer
 
-    def get(self, request, *args, **kwargs):  # noqa
+    def get(self, request: Request, *args, **kwargs) -> Response:  # noqa
         qs = (
             Order.objects.filter(created_date__date=timezone.now().date())
             .values("status")

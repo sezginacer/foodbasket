@@ -1,4 +1,5 @@
 from rest_framework import permissions, status
+from rest_framework.request import Request
 from rest_framework.response import Response
 from rest_framework.views import APIView
 
@@ -12,7 +13,7 @@ class OrderCompleteView(APIView):
     response_serializer = OrderSerializer
     service = OrderService()
 
-    def post(self, request, *args, **kwargs):
+    def post(self, request: Request, *args, **kwargs) -> Response:
         request_serializer = self.request_serializer(
             data=request.data, context={"request": request}
         )

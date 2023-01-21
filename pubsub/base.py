@@ -1,6 +1,9 @@
 from collections import defaultdict
+from typing import Callable, Type
 
 from django.utils.functional import cached_property
+
+from pubsub.serializer import Serializer
 
 
 class PubSub:
@@ -26,25 +29,25 @@ class PubSub:
         self.registry = defaultdict(list)
 
     @cached_property
-    def serializer(self):
+    def serializer(self) -> Serializer:
         return self.serializer_class()
 
-    def publish(self, channel, data):
+    def publish(self, channel: str, data: dict) -> None:
         raise NotImplementedError
 
-    def subscriber(self, channel):
-        def decorator(func):
+    def subscriber(self, channel: str) -> Callable:
+        def decorator(func: Callable) -> Callable:
             self.registry[channel].append(func)
             return func
 
         return decorator
 
-    def start(self):
+    def start(self) -> None:
         # wait for messages
         raise NotImplementedError
 
-    def serialize(self, data):
+    def serialize(self, data: dict):
         return self.serializer.serialize(data)
 
-    def deserialize(self, raw):
+    def deserialize(self, raw: str):
         return self.serializer.deserialize(raw)

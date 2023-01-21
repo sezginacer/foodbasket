@@ -1,12 +1,15 @@
 from django.conf import settings
-from django.db.models import Count, Prefetch, Q, Sum
+from django.db.models import Count, Prefetch, Q, QuerySet, Sum
 
 from foodbasket.orders.enums import OrderStatus
 from foodbasket.products.models import Category, Product
+from foodbasket.restaurants.models import Restaurant
 
 
 class RestaurantService:
-    def get_popular_products(self, restaurant, limit=None):  # noqa
+    def get_popular_products(  # noqa
+        self, restaurant: Restaurant, limit: int | None = None
+    ) -> QuerySet[Product]:
         limit = limit or settings.RESTAURANT_DETAIL_POPULAR_PRODUCTS_LIMIT
 
         popular_products = (
@@ -22,7 +25,9 @@ class RestaurantService:
         )
         return popular_products
 
-    def get_categories_with_products(self, restaurant):  # noqa
+    def get_categories_with_products(  # noqa
+        self, restaurant: Restaurant
+    ) -> QuerySet[Restaurant]:
         categorized_products = (
             Category.objects.alias(
                 product_count=Count(

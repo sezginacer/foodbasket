@@ -7,14 +7,14 @@ from pubsub.serializer import JsonSerializer
 class RedisPubSub(PubSub):
     serializer_class = JsonSerializer
 
-    def __init__(self, host="localhost", port=6379, db=1):
+    def __init__(self, host: str = "localhost", port: int = 6379, db: int = 1):
         super().__init__()
         self.r = redis.StrictRedis(host=host, port=port, db=db)
 
-    def publish(self, channel, data):
+    def publish(self, channel: str, data: dict) -> None:
         self.r.publish(channel, self.serialize(data))
 
-    def start(self):
+    def start(self) -> None:
         p = self.r.pubsub()
         p.psubscribe(*self.registry)
         for message in p.listen():

@@ -28,7 +28,7 @@ class Order(BaseModel):
         verbose_name = _("order")
         verbose_name_plural = _("orders")
 
-    def __str__(self):
+    def __str__(self) -> str:
         return f"{self.number}"
 
 
@@ -49,7 +49,7 @@ class OrderItem(BaseModel):
         verbose_name_plural = _("order items")
         unique_together = ["product", "order"]
 
-    def __str__(self):
+    def __str__(self) -> str:
         return f"{self.order.number}"
 
 
