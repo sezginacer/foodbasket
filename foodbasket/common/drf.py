@@ -1,5 +1,5 @@
 from collections import defaultdict
-from typing import Any, Callable, Dict, Generator, Iterable, List, Tuple, TypeVar
+from typing import Any, Callable, Generator, Iterable, List, Tuple, TypeVar
 
 from django.db.models import ProtectedError
 from django.utils.translation import gettext_lazy as _
@@ -40,7 +40,7 @@ def _handle_protected_error(exc: ProtectedError) -> Response:
     return Response(data, status=status.HTTP_400_BAD_REQUEST)
 
 
-def exception_handler(exc: Exception, context: Dict) -> Response:
+def exception_handler(exc: Exception, context: dict) -> Response:
     response = drf_exception_handler(exc, context)
 
     if response is None and isinstance(exc, ProtectedError):

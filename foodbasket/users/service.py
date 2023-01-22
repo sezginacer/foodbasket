@@ -23,9 +23,9 @@ class AccountService:
         token, _ = Token.objects.get_or_create(user=user)
         return token
 
-    def register(
+    def register(  # noqa
         self, first_name: str, last_name: str, email: str, password: str, username: str
-    ) -> User:  # noqa
+    ) -> User:
         user = User(
             first_name=first_name, last_name=last_name, email=email, username=username
         )

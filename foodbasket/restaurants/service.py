@@ -27,7 +27,7 @@ class RestaurantService:
 
     def get_categories_with_products(  # noqa
         self, restaurant: Restaurant
-    ) -> QuerySet[Restaurant]:
+    ) -> QuerySet[Category]:
         categorized_products = (
             Category.objects.alias(
                 product_count=Count(

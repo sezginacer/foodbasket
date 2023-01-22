@@ -26,9 +26,9 @@ class OrderService:
         OrderItem.objects.bulk_create(order_items)
         return order
 
-    def make_order_item(
+    def make_order_item(  # noqa
         self, product: Product, quantity: int, order: Order
-    ) -> OrderItem:  # noqa
+    ) -> OrderItem:
         return OrderItem(
             product=product,
             quantity=quantity,

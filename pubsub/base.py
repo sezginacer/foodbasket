@@ -22,7 +22,7 @@ class PubSub:
     >>> ps.start()
     """
 
-    serializer_class = None
+    serializer_class: Type[Serializer] = None
 
     def __init__(self):
         super().__init__()
