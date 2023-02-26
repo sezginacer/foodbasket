@@ -7,9 +7,7 @@ from foodbasket.restaurants.models import Restaurant
 
 
 class RestaurantService:
-    def get_popular_products(  # noqa
-        self, restaurant: Restaurant, limit: int | None = None
-    ) -> QuerySet[Product]:
+    def get_popular_products(self, restaurant: Restaurant, limit: int | None = None) -> QuerySet[Product]:  # noqa
         limit = limit or settings.RESTAURANT_DETAIL_POPULAR_PRODUCTS_LIMIT
 
         popular_products = (
@@ -25,9 +23,7 @@ class RestaurantService:
         )
         return popular_products
 
-    def get_categories_with_products(  # noqa
-        self, restaurant: Restaurant
-    ) -> QuerySet[Category]:
+    def get_categories_with_products(self, restaurant: Restaurant) -> QuerySet[Category]:  # noqa
         categorized_products = (
             Category.objects.alias(
                 product_count=Count(
@@ -42,9 +38,7 @@ class RestaurantService:
                     queryset=Product.objects.alias(
                         total_quantity_sold=Sum(
                             "order_items__quantity",
-                            filter=Q(
-                                order_items__order__status__in=[OrderStatus.DELIVERED]
-                            ),
+                            filter=Q(order_items__order__status__in=[OrderStatus.DELIVERED]),
                         )
                     )
                     .actives()

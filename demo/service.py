@@ -63,9 +63,7 @@ class FoodBasketDemoCustomerService(FoodBasketDemoService):
         for product in random.sample(products, k=random.randint(1, len(products))):
             items.append({"product": product["pk"], "quantity": random.randint(1, 3)})
 
-        response = requests.post(
-            url, json={"items": items}, headers=self._get_auth_headers()
-        )
+        response = requests.post(url, json={"items": items}, headers=self._get_auth_headers())
         response.raise_for_status()
         print(f"Order ({response.json()['number']}) created.")
 

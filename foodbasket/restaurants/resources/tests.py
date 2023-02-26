@@ -39,17 +39,13 @@ class RestaurantResourceTestCase(TestCase):
         url = reverse("restaurant-detail", kwargs={"pk": restaurant.id})
 
         data = {"name": "Mc. Donald's"}
-        response = self.client.put(
-            url, data=data, **self.auth_headers, content_type="application/json"
-        )
+        response = self.client.put(url, data=data, **self.auth_headers, content_type="application/json")
         self.assertEqual(response.status_code, http_status.HTTP_200_OK)
         restaurant.refresh_from_db()
         self.assertEqual(restaurant.name, "Mc. Donald's")
 
         data = {"name": "Burger King"}
-        response = self.client.patch(
-            url, data=data, **self.auth_headers, content_type="application/json"
-        )
+        response = self.client.patch(url, data=data, **self.auth_headers, content_type="application/json")
         self.assertEqual(response.status_code, http_status.HTTP_200_OK)
         restaurant.refresh_from_db()
         self.assertEqual(restaurant.name, "Burger King")
@@ -75,7 +71,5 @@ class RestaurantResourceTestCase(TestCase):
     def test_create(self):
         url = reverse("restaurant-list")
         data = {"name": "Burger King"}
-        response = self.client.post(
-            url, data=data, content_type="application/json", **self.auth_headers
-        )
+        response = self.client.post(url, data=data, content_type="application/json", **self.auth_headers)
         self.assertEqual(response.status_code, http_status.HTTP_201_CREATED)

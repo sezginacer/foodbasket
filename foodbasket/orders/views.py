@@ -14,9 +14,7 @@ class OrderCompleteView(APIView):
     service = OrderService()
 
     def post(self, request: Request, *args, **kwargs) -> Response:
-        request_serializer = self.request_serializer(
-            data=request.data, context={"request": request}
-        )
+        request_serializer = self.request_serializer(data=request.data, context={"request": request})
         request_serializer.is_valid(raise_exception=True)
         order = self.service.create_order(**request_serializer.validated_data)
 

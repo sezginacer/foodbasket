@@ -141,9 +141,7 @@ def create_products():
     for p in products:
         category = Category.objects.only("pk").get(name=p.pop("category"))
         restaurant = Restaurant.objects.only("pk").get(name=p.pop("restaurant"))
-        products_.append(
-            Product(category_id=category.pk, restaurant_id=restaurant.pk, **p)
-        )
+        products_.append(Product(category_id=category.pk, restaurant_id=restaurant.pk, **p))
     Product.objects.bulk_create(products_)
     print("products.. done")
 

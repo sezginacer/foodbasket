@@ -10,9 +10,7 @@ from foodbasket.users.models import User
 
 
 class AccountService:
-    def authenticate(
-        self, request: DjangoRequest | DrfRequest, **credentials
-    ) -> Tuple[User, Token]:
+    def authenticate(self, request: DjangoRequest | DrfRequest, **credentials) -> Tuple[User, Token]:
         user = django_authenticate(request, **credentials)
         if not user:
             raise AuthenticationFailed()
@@ -23,12 +21,8 @@ class AccountService:
         token, _ = Token.objects.get_or_create(user=user)
         return token
 
-    def register(  # noqa
-        self, first_name: str, last_name: str, email: str, password: str, username: str
-    ) -> User:
-        user = User(
-            first_name=first_name, last_name=last_name, email=email, username=username
-        )
+    def register(self, first_name: str, last_name: str, email: str, password: str, username: str) -> User:  # noqa
+        user = User(first_name=first_name, last_name=last_name, email=email, username=username)
         user.set_password(password)
         user.save()
         return user

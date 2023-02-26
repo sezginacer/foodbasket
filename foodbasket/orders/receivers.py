@@ -17,6 +17,4 @@ def publish_order(instance: "Order", created: bool = False, **kwargs) -> None:
 
     pubsub = get_pubsub()
     serializer = OrderSerializer(instance)
-    transaction.on_commit(
-        lambda: pubsub.publish(settings.ORDER_PUBSUB_CHANNEL, serializer.data)
-    )
+    transaction.on_commit(lambda: pubsub.publish(settings.ORDER_PUBSUB_CHANNEL, serializer.data))

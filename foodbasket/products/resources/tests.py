@@ -61,9 +61,7 @@ class ProductResourceTestCase(TestCase):
             "category": next_category.id,
             "restaurant": product.restaurant.id,
         }
-        response = self.client.put(
-            url, data=data, **self.auth_headers, content_type="application/json"
-        )
+        response = self.client.put(url, data=data, **self.auth_headers, content_type="application/json")
         self.assertEqual(response.status_code, http_status.HTTP_200_OK)
         product.refresh_from_db()
         self.assertEqual(product.name, "Steak")
@@ -71,9 +69,7 @@ class ProductResourceTestCase(TestCase):
         self.assertEqual(product.category_id, next_category.id)
 
         data = {"name": "Steak Burger"}
-        response = self.client.patch(
-            url, data=data, **self.auth_headers, content_type="application/json"
-        )
+        response = self.client.patch(url, data=data, **self.auth_headers, content_type="application/json")
         self.assertEqual(response.status_code, http_status.HTTP_200_OK)
         product.refresh_from_db()
         self.assertEqual(product.name, "Steak Burger")
@@ -107,9 +103,7 @@ class ProductResourceTestCase(TestCase):
             "restaurant": restaurant.id,
             "price": "59.90",
         }
-        response = self.client.post(
-            url, data=data, content_type="application/json", **self.auth_headers
-        )
+        response = self.client.post(url, data=data, content_type="application/json", **self.auth_headers)
         self.assertEqual(response.status_code, http_status.HTTP_201_CREATED)
 
 
@@ -146,17 +140,13 @@ class CategoryResourceTestCase(TestCase):
         url = reverse("category-detail", kwargs={"pk": category.id})
 
         data = {"name": "Far East Kitchen"}
-        response = self.client.put(
-            url, data=data, **self.auth_headers, content_type="application/json"
-        )
+        response = self.client.put(url, data=data, **self.auth_headers, content_type="application/json")
         self.assertEqual(response.status_code, http_status.HTTP_200_OK)
         category.refresh_from_db()
         self.assertEqual(category.name, "Far East Kitchen")
 
         data = {"name": "Cookies"}
-        response = self.client.patch(
-            url, data=data, **self.auth_headers, content_type="application/json"
-        )
+        response = self.client.patch(url, data=data, **self.auth_headers, content_type="application/json")
         self.assertEqual(response.status_code, http_status.HTTP_200_OK)
         category.refresh_from_db()
         self.assertEqual(category.name, "Cookies")
@@ -182,7 +172,5 @@ class CategoryResourceTestCase(TestCase):
     def test_create(self):
         url = reverse("category-list")
         data = {"name": "Soup"}
-        response = self.client.post(
-            url, data=data, content_type="application/json", **self.auth_headers
-        )
+        response = self.client.post(url, data=data, content_type="application/json", **self.auth_headers)
         self.assertEqual(response.status_code, http_status.HTTP_201_CREATED)

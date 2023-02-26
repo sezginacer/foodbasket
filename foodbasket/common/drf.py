@@ -11,9 +11,7 @@ from rest_framework.views import set_rollback
 T = TypeVar("T")
 
 
-def _groupby(
-    iterable: Iterable[T], key: Callable[[T], Any]
-) -> Generator[Tuple[Any, List[T]], None, None]:
+def _groupby(iterable: Iterable[T], key: Callable[[T], Any]) -> Generator[Tuple[Any, List[T]], None, None]:
     # since itertools.groupby surprisingly not worked properly in the case below,
     # wrote a function like that.
     grouped = defaultdict(list)
@@ -31,11 +29,7 @@ def _handle_protected_error(exc: ProtectedError) -> Response:
         object_labels = ", ".join(map(str, objects))
         groups.append(f"{model_label} ({object_labels})")
 
-    data = {
-        "detail": _("There are some references to the object: {detail}.").format(
-            detail=", ".join(groups)
-        )
-    }
+    data = {"detail": _("There are some references to the object: {detail}.").format(detail=", ".join(groups))}
     set_rollback()
     return Response(data, status=status.HTTP_400_BAD_REQUEST)
 

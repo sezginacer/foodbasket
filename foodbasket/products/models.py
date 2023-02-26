@@ -23,15 +23,9 @@ class Category(BaseModel):
 
 class Product(BaseModel):
     name = models.CharField(max_length=64)
-    category = models.ForeignKey(
-        Category, related_name="products", on_delete=models.PROTECT
-    )
-    restaurant = models.ForeignKey(
-        Restaurant, related_name="products", on_delete=models.PROTECT
-    )
-    price = models.DecimalField(
-        max_digits=10, decimal_places=2, validators=[MinValueValidator(0.01)]
-    )
+    category = models.ForeignKey(Category, related_name="products", on_delete=models.PROTECT)
+    restaurant = models.ForeignKey(Restaurant, related_name="products", on_delete=models.PROTECT)
+    price = models.DecimalField(max_digits=10, decimal_places=2, validators=[MinValueValidator(0.01)])
     is_active = models.BooleanField(default=True)
 
     objects = ProductQuerySet.as_manager()

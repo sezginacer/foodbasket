@@ -14,9 +14,7 @@ T = List[OrderedDict[str, Any]]
 
 
 class OrderItemCompleteSerializer(serializers.Serializer):  # noqa
-    product = serializers.PrimaryKeyRelatedField(
-        queryset=Product.objects.actives().filter(restaurant__is_active=True)
-    )
+    product = serializers.PrimaryKeyRelatedField(queryset=Product.objects.actives().filter(restaurant__is_active=True))
     quantity = serializers.IntegerField(default=1, validators=[MinValueValidator(1)])
 
 
@@ -32,13 +30,9 @@ class OrderCompleteSerializer(serializers.Serializer):  # noqa
         product_ids = {product.id for product in products}
 
         if len(restaurant_ids) > 1:
-            raise serializers.ValidationError(
-                _("Each item must be from the same restaurant.")
-            )
+            raise serializers.ValidationError(_("Each item must be from the same restaurant."))
         if len(product_ids) != len(products):
-            raise serializers.ValidationError(
-                _("Each item must be of different products.")
-            )
+            raise serializers.ValidationError(_("Each item must be of different products."))
         return items
 
 

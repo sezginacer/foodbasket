@@ -13,16 +13,10 @@ from foodbasket.restaurants.models import Restaurant
 
 class Order(BaseModel):
     number = models.CharField(max_length=12, unique=True)
-    amount = models.DecimalField(
-        max_digits=10, decimal_places=2, validators=[MinValueValidator(0.01)]
-    )
+    amount = models.DecimalField(max_digits=10, decimal_places=2, validators=[MinValueValidator(0.01)])
     status = models.IntegerField(choices=OrderStatus.choices)
-    user = models.ForeignKey(
-        settings.AUTH_USER_MODEL, related_name="orders", on_delete=models.PROTECT
-    )
-    restaurant = models.ForeignKey(
-        Restaurant, related_name="orders", on_delete=models.PROTECT
-    )
+    user = models.ForeignKey(settings.AUTH_USER_MODEL, related_name="orders", on_delete=models.PROTECT)
+    restaurant = models.ForeignKey(Restaurant, related_name="orders", on_delete=models.PROTECT)
 
     class Meta:
         verbose_name = _("order")
@@ -33,16 +27,10 @@ class Order(BaseModel):
 
 
 class OrderItem(BaseModel):
-    order = models.ForeignKey(
-        Order, related_name="order_items", on_delete=models.PROTECT
-    )
-    product = models.ForeignKey(
-        Product, related_name="order_items", on_delete=models.PROTECT
-    )
+    order = models.ForeignKey(Order, related_name="order_items", on_delete=models.PROTECT)
+    product = models.ForeignKey(Product, related_name="order_items", on_delete=models.PROTECT)
     quantity = models.PositiveIntegerField()
-    amount = models.DecimalField(
-        max_digits=10, decimal_places=2, validators=[MinValueValidator(0.01)]
-    )
+    amount = models.DecimalField(max_digits=10, decimal_places=2, validators=[MinValueValidator(0.01)])
 
     class Meta:
         verbose_name = _("order item")

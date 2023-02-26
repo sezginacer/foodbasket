@@ -17,11 +17,7 @@ class RestaurantListView(generics.ListAPIView):
     permission_classes = [permissions.AllowAny]
     queryset = (
         Restaurant.objects.actives()
-        .alias(
-            order_count=Count(
-                "orders", filter=Q(orders__status__in=[OrderStatus.DELIVERED])
-            )
-        )
+        .alias(order_count=Count("orders", filter=Q(orders__status__in=[OrderStatus.DELIVERED])))
         .order_by("-order_count", "-created_date")
     )
     serializer_class = RestaurantListSerializer

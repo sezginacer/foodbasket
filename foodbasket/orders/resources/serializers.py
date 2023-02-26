@@ -12,9 +12,7 @@ class OrderSerializer(serializers.ModelSerializer):
 
 
 class OrderUpdateSerializer(serializers.ModelSerializer):
-    status = serializers.ChoiceField(
-        choices=OrderStatus.choices, validators=[OrderStatusChangeValidator()]
-    )
+    status = serializers.ChoiceField(choices=OrderStatus.choices, validators=[OrderStatusChangeValidator()])
 
     class Meta:
         model = Order

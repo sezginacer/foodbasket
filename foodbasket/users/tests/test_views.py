@@ -24,9 +24,7 @@ class RegisterViewTestCase(TestCase):
             "email": email,
             "password": password,
         }
-        response = self.client.post(
-            self.url, data=data, content_type="application/json"
-        )
+        response = self.client.post(self.url, data=data, content_type="application/json")
         self.assertEqual(response.status_code, http_status.HTTP_201_CREATED)
         self.assertTrue(User.objects.filter(email=email).exists())
 
@@ -40,9 +38,7 @@ class RegisterViewTestCase(TestCase):
             "email": "test@test.com",
             "password": "1213.as1.2",
         }
-        response = self.client.post(
-            self.url, data=data, content_type="application/json"
-        )
+        response = self.client.post(self.url, data=data, content_type="application/json")
         self.assertEqual(response.status_code, http_status.HTTP_400_BAD_REQUEST)
 
         response_data = response.json()
@@ -59,9 +55,7 @@ class RegisterViewTestCase(TestCase):
             "email": email,
             "password": "1213.as1.2",
         }
-        response = self.client.post(
-            self.url, data=data, content_type="application/json"
-        )
+        response = self.client.post(self.url, data=data, content_type="application/json")
         self.assertEqual(response.status_code, http_status.HTTP_400_BAD_REQUEST)
 
         response_data = response.json()
@@ -76,9 +70,7 @@ class RegisterViewTestCase(TestCase):
             "email": "test@test.com",
             "password": "1234",
         }
-        response = self.client.post(
-            self.url, data=data, content_type="application/json"
-        )
+        response = self.client.post(self.url, data=data, content_type="application/json")
         self.assertEqual(response.status_code, http_status.HTTP_400_BAD_REQUEST)
 
         response_data = response.json()
@@ -101,9 +93,7 @@ class TokenViewTestCase(TestCase):
         UserFactory(email=email, password=make_password(password))
 
         data = {"email": email, "password": password}
-        response = self.client.post(
-            self.url, data=data, content_type="application/json"
-        )
+        response = self.client.post(self.url, data=data, content_type="application/json")
         self.assertEqual(response.status_code, http_status.HTTP_200_OK)
 
         response_data = response.json()
@@ -111,7 +101,5 @@ class TokenViewTestCase(TestCase):
 
     def test_token_fail(self):
         data = {"email": "email_that@does-not-even-exist.com", "password": "123sad.as"}
-        response = self.client.post(
-            self.url, data=data, content_type="application/json"
-        )
+        response = self.client.post(self.url, data=data, content_type="application/json")
         self.assertEqual(response.status_code, http_status.HTTP_401_UNAUTHORIZED)

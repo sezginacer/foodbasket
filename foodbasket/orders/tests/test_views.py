@@ -67,9 +67,7 @@ class OrderCompleteViewTestTest(TestCase):
 
         response_data = response.json()
         self.assertIn("items", response_data)
-        self.assertIn(
-            "Each item must be from the same restaurant.", response_data["items"]
-        )
+        self.assertIn("Each item must be from the same restaurant.", response_data["items"])
 
     def test_order_complete_with_inactive_product_and_restaurant(self):
         product_1 = ProductFactory(is_active=False)

@@ -47,14 +47,10 @@ class UserResourceTestCase(TestCase):
         url = reverse("user-detail", kwargs={"pk": user.id})
 
         data = {"first_name": "John"}
-        response = self.client.put(
-            url, data=data, **self.auth_headers, content_type="application/json"
-        )
+        response = self.client.put(url, data=data, **self.auth_headers, content_type="application/json")
         self.assertEqual(response.status_code, http_status.HTTP_405_METHOD_NOT_ALLOWED)
 
-        response = self.client.patch(
-            url, data=data, **self.auth_headers, content_type="application/json"
-        )
+        response = self.client.patch(url, data=data, **self.auth_headers, content_type="application/json")
         self.assertEqual(response.status_code, http_status.HTTP_405_METHOD_NOT_ALLOWED)
 
     def test_delete(self):
@@ -72,7 +68,5 @@ class UserResourceTestCase(TestCase):
             "password": "12345",
             "email": "john.doe@test.com",
         }
-        response = self.client.post(
-            url, data=data, content_type="application/json", **self.auth_headers
-        )
+        response = self.client.post(url, data=data, content_type="application/json", **self.auth_headers)
         self.assertEqual(response.status_code, http_status.HTTP_405_METHOD_NOT_ALLOWED)

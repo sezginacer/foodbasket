@@ -35,9 +35,7 @@ class OrderViewSet(
         .prefetch_related(
             Prefetch(
                 "order_items",
-                queryset=OrderItem.objects.select_related(
-                    "product", "product__category", "product__restaurant"
-                ),
+                queryset=OrderItem.objects.select_related("product", "product__category", "product__restaurant"),
             )
         )
     )
@@ -58,9 +56,6 @@ class StatusView(APIView):
             .annotate(orders=Count("pk"))
         )
         counts = {count["status"]: count["orders"] for count in qs}
-        data = [
-            {"status": status, "orders": counts.get(status, 0)}
-            for status in OrderStatus
-        ]
+        data = [{"status": status, "orders": counts.get(status, 0)} for status in OrderStatus]
         serializer = self.serializer_class(data, many=True)
         return Response(serializer.data)

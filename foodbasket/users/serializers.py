@@ -16,9 +16,7 @@ class LoginSerializer(serializers.Serializer):  # noqa
 class RegisterSerializer(serializers.Serializer):  # noqa
     first_name = serializers.CharField(max_length=150)
     last_name = serializers.CharField(max_length=150)
-    email = serializers.EmailField(
-        validators=[UniqueValidator(queryset=User.objects.all())]
-    )
+    email = serializers.EmailField(validators=[UniqueValidator(queryset=User.objects.all())])
     password = serializers.CharField()
     username = serializers.CharField(
         max_length=150,

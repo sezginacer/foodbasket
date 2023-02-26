@@ -53,9 +53,7 @@ class OrderResourceTestCase(TestCase):
         old_status = order.status
         self.assertEqual(old_status, OrderStatus.WAITING_APPROVE)
 
-        response = self.client.patch(
-            url, data=data, **self.auth_headers, content_type="application/json"
-        )
+        response = self.client.patch(url, data=data, **self.auth_headers, content_type="application/json")
         self.assertEqual(response.status_code, http_status.HTTP_200_OK)
 
         order.refresh_from_db()

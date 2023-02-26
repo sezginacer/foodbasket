@@ -11,12 +11,7 @@ from foodbasket.users.models import User
 class OrderService:
     @transaction.atomic()
     def create_order(
-        self,
-        items: List[OrderedDict[str, Any]],
-        user: User,
-        number: str,
-        status: OrderStatus,
-        **kwargs
+        self, items: List[OrderedDict[str, Any]], user: User, number: str, status: OrderStatus, **kwargs
     ) -> Order:
         order = Order(user=user, number=number, status=status)
         order_items = [self.make_order_item(order=order, **item) for item in items]
@@ -26,9 +21,7 @@ class OrderService:
         OrderItem.objects.bulk_create(order_items)
         return order
 
-    def make_order_item(  # noqa
-        self, product: Product, quantity: int, order: Order
-    ) -> OrderItem:
+    def make_order_item(self, product: Product, quantity: int, order: Order) -> OrderItem:  # noqa
         return OrderItem(
             product=product,
             quantity=quantity,

@@ -35,9 +35,7 @@ class RestaurantListViewTestCase(TestCase):
         self.assertEqual(response.status_code, http_status.HTTP_200_OK)
 
         response_data = response.json()
-        self.assertEqual(
-            response_data.get("count"), Restaurant.objects.actives().count()
-        )
+        self.assertEqual(response_data.get("count"), Restaurant.objects.actives().count())
         self.assertIsNotNone(response_data.get("results"))
 
         for result in response_data["results"]:
@@ -66,13 +64,8 @@ class RestaurantDetailViewTestCase(TestCase):
             products_ = random.sample(products, random.randint(1, 3))
             user = random.choice(users)
             number = generate_order_number()
-            items = [
-                {"product": product, "quantity": random.randint(1, 5)}
-                for product in products_
-            ]
-            self.order_service.create_order(
-                items, user, number, status=random.choice(OrderStatus.values)
-            )
+            items = [{"product": product, "quantity": random.randint(1, 5)} for product in products_]
+            self.order_service.create_order(items, user, number, status=random.choice(OrderStatus.values))
 
     @override_settings(RESTAURANT_DETAIL_POPULAR_PRODUCTS_LIMIT=3)
     def test_restaurant_detail(self):
@@ -90,6 +83,4 @@ class RestaurantDetailViewTestCase(TestCase):
             self.assertIsNotNone(category.get("name"))
             self.assertIsNotNone(category.get("products"))
 
-        self.assertGreaterEqual(
-            settings.RESTAURANT_DETAIL_POPULAR_PRODUCTS_LIMIT, len(popular_products)
-        )
+        self.assertGreaterEqual(settings.RESTAURANT_DETAIL_POPULAR_PRODUCTS_LIMIT, len(popular_products))
