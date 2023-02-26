@@ -38,7 +38,7 @@ jobs:
       - name: Linting with black & isort
         run: |
           black --check --quiet --exclude=migrations/ ./
-          isort -c --profile=black --skip=migrations ./
+          isort -c --skip=migrations ./
       - name: Run Tests
         env:
           DATABASE_URL: postgres://postgres:postgres@127.0.0.1:5432/foodbasket
