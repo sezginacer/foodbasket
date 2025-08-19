@@ -62,8 +62,37 @@ msgstr ""
 msgid "order items"
 msgstr ""
 
+#: foodbasket/orders/models.py:35
+msgid "Order amount must be greater than zero."
+msgstr ""
+
+#: foodbasket/orders/models.py:38
+msgid "Cannot create order for inactive restaurant."
+msgstr ""
+
+#: foodbasket/orders/models.py:65
+msgid "Quantity must be greater than zero."
+msgstr ""
+
+#: foodbasket/orders/models.py:68
+msgid "Amount must be greater than zero."
+msgstr ""
+
+#: foodbasket/orders/models.py:71
+msgid "Cannot add inactive product to order."
+msgstr ""
+
+#: foodbasket/orders/models.py:74
+msgid "Cannot add product from inactive restaurant."
+msgstr ""
+
 #: foodbasket/orders/resources/validators.py:20
 msgid "This is not a valid status change."
+msgstr ""
+
+#: foodbasket/orders/resources/validators.py:25
+#, python-brace-format
+msgid "Invalid status transition from '{current}' to '{new}'. Valid transitions: {valid}"
 msgstr ""
 
 #: foodbasket/orders/serializers.py:32

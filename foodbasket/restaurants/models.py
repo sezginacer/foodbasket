@@ -11,13 +11,16 @@ from foodbasket.restaurants.managers import RestaurantQuerySet
 class Restaurant(BaseModel):
     uuid = models.UUIDField(default=uuid.uuid4, editable=False, unique=True)
     name = models.CharField(max_length=64)
-    is_active = models.BooleanField(default=True)
+    is_active = models.BooleanField(default=True, db_index=True)
 
     objects = RestaurantQuerySet.as_manager()
 
     class Meta:
         verbose_name = _("restaurant")
         verbose_name_plural = _("restaurants")
+        indexes = [
+            models.Index(fields=['is_active', 'name']),
+        ]
 
     def __str__(self) -> str:
         return f"{self.name}"

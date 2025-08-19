@@ -26,7 +26,7 @@ class Product(BaseModel):
     category = models.ForeignKey(Category, related_name="products", on_delete=models.PROTECT)
     restaurant = models.ForeignKey(Restaurant, related_name="products", on_delete=models.PROTECT)
     price = models.DecimalField(max_digits=10, decimal_places=2, validators=[MinValueValidator(0.01)])
-    is_active = models.BooleanField(default=True)
+    is_active = models.BooleanField(default=True, db_index=True)
 
     objects = ProductQuerySet.as_manager()
 
@@ -34,6 +34,11 @@ class Product(BaseModel):
         verbose_name = _("product")
         verbose_name_plural = _("products")
         unique_together = ["name", "restaurant"]
+        indexes = [
+            models.Index(fields=['restaurant', 'is_active']),
+            models.Index(fields=['category', 'is_active']),
+            models.Index(fields=['price']),
+        ]
 
     def __str__(self) -> str:
         return f"{self.name}"

@@ -16,7 +16,9 @@ Including another URLconf
 
 from django.urls import include, path
 from rest_framework.routers import SimpleRouter
+from drf_spectacular.views import SpectacularAPIView, SpectacularSwaggerView, SpectacularRedocView
 
+from foodbasket.common.views import health_check, system_status
 from foodbasket.orders.resources.views import OrderViewSet, StatusView
 from foodbasket.products.resources.views import CategoryViewSet, ProductViewSet
 from foodbasket.restaurants.resources.views import RestaurantViewSet
@@ -34,9 +36,17 @@ api_urls = router.urls + [
 ]
 
 urlpatterns = [
+    # Health check endpoints
+    path("health/", health_check, name="health-check"),
+    path("status/system/", system_status, name="system-status"),
+    # App URLs
     path("users/", include("foodbasket.users.urls")),
     path("products/", include("foodbasket.products.urls")),
     path("restaurants/", include("foodbasket.restaurants.urls")),
     path("orders/", include("foodbasket.orders.urls")),
     path("api/v1/", include(api_urls)),
+    # API Documentation
+    path('api/schema/', SpectacularAPIView.as_view(), name='schema'),
+    path('api/docs/', SpectacularSwaggerView.as_view(url_name='schema'), name='swagger-ui'),
+    path('api/redoc/', SpectacularRedocView.as_view(url_name='schema'), name='redoc'),
 ]
